@@ -17,6 +17,8 @@ var SITE = {
 /* Page behaviour
    - contact details from SITE
    - the header is clear over the hero and solid after it; sections fade in once (never with reduced motion)
+   - the face wall behind the name on Home: one face at a time lights up with its AU tag; pointing at (or tapping)
+     a face lights it; Pause / Play; with reduced motion three faces are lit and nothing changes by itself
    - Pause / Play for the live galaxies (GalaxyHero instance .setView({ freeze }))
    - recordings: a still that a loop plays over; only one plays at a time, only while it is mostly on screen; each
      has Pause / Play; with reduced motion nothing plays by itself
@@ -79,7 +81,7 @@ var SITE = {
   })();
 
   /* ---------------------------------------------------------------- header */
-  // Clear over the galaxy at the top of Home; solid as soon as the first line of the hero's text would reach it, so
+  // Clear over the face wall at the top of Home; solid as soon as the first line of the hero's text would reach it, so
   // no text ever scrolls under a clear header.
   (function header() {
     var header = doc.querySelector("[data-header]"), hero = doc.querySelector("[data-hero]");
@@ -114,6 +116,101 @@ var SITE = {
     function all() { els.forEach(function (el) { el.classList.add("in"); }); }
     window.addEventListener("hashchange", all);
     window.addEventListener("beforeprint", all);
+  })();
+
+  /* ---------------------------------------------------------------- face wall (Home)
+     The candid photos behind the name. Every 2.4 s a face in the open part of the wall (beside the words, or below them
+     on a tall screen; on a phone, the band above the name) lights up and shows the AUs LibreFace found in it, two at a
+     time. Pointing at a face there lights it at once; on a phone, tapping a face does. With reduced motion three faces
+     are lit and nothing changes by itself; Pause stops the cycle; it also rests while the wall is off screen. */
+  (function faceWall() {
+    var wall = doc.querySelector("[data-facewall]");
+    if (!wall) return;
+    var hero = wall.closest("[data-hero]") || doc.body;
+    var tiles = $all(".face", wall);
+    var copy = hero.querySelector(".hero-copy"), foot = hero.querySelector(".hero-foot"), eyebrow = hero.querySelector(".eyebrow");
+    var header = doc.querySelector("[data-header]");
+    var btn = hero.querySelector("[data-wall-toggle]"), note = hero.querySelector("[data-wall-still]");
+    var label = btn && btn.querySelector("[data-label]");
+    var lit = [], max = 2, timer = null, paused = false, onScreen = true, hover = null, k = 0, tapTimer = null;
+    function phone() { return !!(mqPhone && mqPhone.matches); }
+    // the faces wholly inside the open part of the wall
+    function words() {                                   // where the words end (not the box round them, which is padded)
+      var c = null;
+      if (copy) $all(":scope > *", copy).forEach(function (el) {
+        if (el.hidden) return;
+        var r = el.getBoundingClientRect();
+        if (!r.width) return;
+        c = c ? { right: Math.max(c.right, r.right), bottom: Math.max(c.bottom, r.bottom) } : { right: r.right, bottom: r.bottom };
+      });
+      return c;
+    }
+    function open() {
+      var vw = root.clientWidth, top = header ? header.getBoundingClientRect().bottom : 64;
+      var c = words(), f = foot ? foot.getBoundingClientRect() : null;
+      var low = phone() ? (eyebrow ? eyebrow.getBoundingClientRect().top - 6 : 236) : (f ? f.top : window.innerHeight) - 10;
+      return tiles.filter(function (t) {
+        var r = t.getBoundingClientRect();
+        if (!r.width || r.top < top + (phone() ? 2 : 6) || r.bottom > low || r.left < 6 || r.right > vw - (phone() ? 6 : 16)) return false;
+        return phone() || !c || r.left > c.right + 24 || r.top > c.bottom + 16;
+      });
+    }
+    function light(t) {
+      if (lit.indexOf(t) >= 0) return;
+      t.classList.add("is-lit"); lit.push(t);
+      while (lit.length > max) lit.shift().classList.remove("is-lit");
+    }
+    function clear() { lit.forEach(function (t) { t.classList.remove("is-lit"); }); lit = []; }
+    function step() { if (hover) return; var c = open(); if (c.length) light(c[(k = (k + 5) % c.length)]); }
+    function still() {                                   // reduced motion: a few faces lit, spread over the open wall
+      clear();
+      var c = open(), qs = phone() ? [0.2, 0.8] : [0.1, 0.5, 0.9];
+      max = qs.length;
+      qs.forEach(function (q) { var t = c[Math.round(q * (c.length - 1))]; if (t) light(t); });
+    }
+    function run() {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (reduced()) { still(); return; }
+      max = 2;
+      if (paused || !onScreen || doc.hidden) return;
+      if (!lit.length) { var c = open(); if (c.length) light(c[Math.min(2, c.length - 1)]); }
+      timer = setInterval(step, 2400);
+    }
+    function paint() {
+      if (note) note.hidden = !reduced();
+      if (!btn) return;
+      btn.hidden = reduced();
+      btn.classList.toggle("is-paused", paused);
+      if (label) label.textContent = paused ? "Play" : "Pause";
+      btn.setAttribute("aria-label", paused ? "Play the face wall" : "Pause the face wall");
+    }
+    function point(t) {
+      if (hover && hover !== t) hover.classList.remove("is-hover");
+      hover = t; if (t) t.classList.add("is-hover");
+    }
+    tiles.forEach(function (t) {
+      t.addEventListener("pointerenter", function (e) { if (e.pointerType !== "touch" && open().indexOf(t) >= 0) point(t); });
+      t.addEventListener("pointerleave", function (e) { if (e.pointerType !== "touch" && hover === t) point(null); });
+      // a tap (no mouse) lights the face, a second tap puts it back; it goes back by itself after 6 s
+      t.addEventListener("click", function (e) {
+        if (e.pointerType === "mouse" || open().indexOf(t) < 0) return;
+        clearTimeout(tapTimer);
+        if (hover === t) { point(null); return; }
+        point(t);
+        tapTimer = setTimeout(function () { if (hover === t) point(null); }, 6000);
+      });
+    });
+    if (btn) btn.addEventListener("click", function () { paused = !paused; paint(); run(); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; run(); }).observe(hero);
+    }
+    doc.addEventListener("visibilitychange", run);
+    var rz = null;
+    window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (reduced()) still(); }, 200); });
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { if (reduced()) still(); });
+    onChange(mqReduce, function () { paint(); clear(); run(); });
+    paint();
+    run();
   })();
 
   /* ---------------------------------------------------------------- galaxies: Pause / Play */
