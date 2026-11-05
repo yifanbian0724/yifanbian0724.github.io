@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools · Yifan Bian</title>
+<meta name="description" content="Five tools by Yifan Bian: a published guide to 128 facial expression databases, and four in development for reading faces, voices and words, mapping research, exploring the evidence on facial expressions, and understanding feelings.">
+<meta name="theme-color" content="#0b0d14">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://yifanbian0724.github.io/tools.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yifanbian0724.github.io/tools.html">
+<meta property="og:site_name" content="Yifan Bian">
+<meta property="og:title" content="Tools · Yifan Bian">
+<meta property="og:description" content="A published guide to 128 facial expression databases, and four tools in development for reading faces, voices and words, mapping research, exploring the evidence on facial expressions, and understanding feelings.">
+<meta property="og:image" content="https://yifanbian0724.github.io/assets/social.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yifan Bian, PhD researcher in Experimental Psychology at UCL: how real faces show emotion, and how well AI can read them. Beside the words, a galaxy of glowing points, each a document in the research library.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/galaxy/galaxy-data.json" as="fetch" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap"></noscript>
+<link rel="stylesheet" href="style.css">
+<noscript><style>.toggle, .zoom-btn { display: none; } .panel-galaxy > .galaxy { background: url("assets/galaxy/poster.jpg") center / cover no-repeat; }</style></noscript>
+</head>
+<body class="page-tools">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="wrap nav">
+    <a class="wordmark" href="index.html">Yifan Bian</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="research.html">Research</a>
+      <a href="tools.html" aria-current="page">Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="btn btn--ghost btn--sm nav-cta" href="#contact" data-site-show="email" hidden>Get in touch</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-intro" aria-labelledby="page-title">
+    <div class="wrap">
+      <div class="intro-grid">
+        <div>
+          <p class="eyebrow">Tools</p>
+          <h1 class="page-title" id="page-title">Tools</h1>
+          <p class="lead">Five tools from my work on faces and feelings. The first was published with a peer-reviewed paper. The other four are in development, and each one says whether you can try it in your browser<span data-site-show="email" hidden> or see it in a demo</span>.</p>
+        </div>
+        <div class="intro-side">
+          <p>I work on these tools every week, so each one shows the month this page was last checked against it. Live previews are dated snapshots.</p>
+          <p class="how"><b>How I build.</b> I design each tool, decide what counts as evidence and how its results are checked, and build it myself with Claude Code as my pair programmer.</p>
+          <ul class="legend" aria-label="What the labels mean">
+            <li><span class="chip chip--published">Published</span><span>Released with a peer-reviewed paper and archived. You can use it and cite it.</span></li>
+            <li><span class="chip chip--live">Live preview</span><span>A dated snapshot of a tool in development that you can try in your browser.</span></li>
+            <li><span class="chip chip--dev">In development</span><span>It works, but it isn’t public yet. It’s shown here in recordings and stills<span data-site-show="email" hidden>, and demos are available on request</span>.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <nav class="tool-index" aria-label="Tools on this page" data-tool-index>
+        <ol>
+          <li><a href="#database-finder"><picture><source type="image/webp" srcset="media/database-finder/thumb.webp"><img class="ti-thumb" src="media/database-finder/thumb.jpg" width="480" height="300" alt="" loading="lazy" decoding="async"></picture><span class="ti-text"><span class="ti-name">Database Finder</span><span class="chip chip--published">Published</span></span></a></li>
+          <li><a href="#crossread"><picture><source type="image/webp" srcset="media/crossread/thumb.webp"><img class="ti-thumb" src="media/crossread/thumb.jpg" width="480" height="300" alt="" loading="lazy" decoding="async"></picture><span class="ti-text"><span class="ti-name">Crossread</span><span class="chip chip--dev">In development</span></span></a></li>
+          <li><a href="#literature-galaxy"><picture><source type="image/webp" srcset="media/literature-galaxy/thumb.webp"><img class="ti-thumb" src="media/literature-galaxy/thumb.jpg" width="480" height="300" alt="" loading="lazy" decoding="async"></picture><span class="ti-text"><span class="ti-name">Literature Galaxy</span><span class="chip chip--live">Live preview</span></span></a></li>
+          <li><a href="#face-value"><picture><source type="image/webp" srcset="media/face-value/thumb.webp"><img class="ti-thumb" src="media/face-value/thumb.jpg" width="480" height="300" alt="" loading="lazy" decoding="async"></picture><span class="ti-text"><span class="ti-name">Face Value</span><span class="chip chip--live">Live preview</span></span></a></li>
+          <li><a href="#self-discovery"><picture><source type="image/webp" srcset="media/self-discovery/thumb.webp"><img class="ti-thumb" src="media/self-discovery/thumb.jpg" width="480" height="300" alt="" loading="lazy" decoding="async"></picture><span class="ti-text"><span class="ti-name">Self-Discovery</span><span class="chip chip--dev">In development</span></span></a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <nav class="jumpbar" aria-label="Jump to a tool" data-jumpbar>
+    <div class="wrap">
+      <ol>
+        <li><a href="#database-finder" style="--c: var(--green)"><i aria-hidden="true"></i>Database Finder</a></li>
+        <li><a href="#crossread" style="--c: var(--orange)"><i aria-hidden="true"></i>Crossread</a></li>
+        <li><a href="#literature-galaxy" style="--c: var(--accent)"><i aria-hidden="true"></i>Literature Galaxy</a></li>
+        <li><a href="#face-value" style="--c: var(--accent)"><i aria-hidden="true"></i>Face Value</a></li>
+        <li><a href="#self-discovery" style="--c: var(--orange)"><i aria-hidden="true"></i>Self-Discovery</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+<!-- TOOL: database-finder -->
+    <article class="tool" id="database-finder" data-tool="database-finder" aria-labelledby="t-database-finder">
+      <header class="tool-head">
+        <div>
+          <p class="tool-kicker"><span class="idx"><b>01</b> / 05</span><span class="chip chip--published">Published · August 2026</span></p>
+          <h2 class="tool-name" id="t-database-finder">Facial Expression Database Finder</h2>
+          <p class="tool-promise">Search 128 video databases of spontaneous (unposed) facial expressions.</p>
+        </div>
+        <div class="tool-cta">
+          <div class="btn-row">
+            <a class="btn" href="https://osf.io/7f6xt/files/h64ds">Download the table (OSF) <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v8M4.6 7.4 8 10.8l3.4-3.4M3 13.5h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--ghost" href="https://doi.org/10.1177/17540739261478876">Read the paper</a>
+          </div>
+          <p class="microcopy">OSF can’t preview the table, so it downloads as a file. Open it in a web browser on a computer, with an internet connection.</p>
+          <a class="arrow-link" href="database-finder.html">About the table</a>
+          <p class="date-line">Published August 2026 · version 1</p>
+        </div>
+      </header>
+
+      <div class="tool-lead media-split reveal">
+        <figure>
+          <div class="shot">
+            <div class="loop" id="v-dbf" data-loop data-src="media/database-finder/search-loop.mp4" data-src-phone="media/database-finder/search-loop-phone.mp4">
+              <picture><source media="(max-width: 640px)" type="image/webp" srcset="media/database-finder/search-loop-phone-poster.webp" width="720" height="1047"><source media="(max-width: 640px)" srcset="media/database-finder/search-loop-phone-poster.jpg" width="720" height="1047"><source type="image/webp" srcset="media/database-finder/search-loop-poster.webp"><img src="media/database-finder/search-loop-poster.jpg" width="1600" height="1116" loading="lazy" decoding="async"
+                   alt="The published table after typing “pain”: 17 of 128 databases on its Technical tab, sorted by number of people with the largest first (HUME-REACTION, 2,222 people)."
+                   aria-describedby="vd-dbf"></picture>
+              <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            </div>
+            <p class="sr-only" id="vd-dbf">The recording: someone types “pain” into the search box and the count drops from 128 to 17 databases. They switch to the Technical tab, where the same 17 remain, and sort them by number of people so the largest collections come first. On wider screens they also open the card for the X-ITE Pain Database on its technical details (number of people and videos, clip length, frame rate, resolution, sound and speech, thermal video, camera viewpoint and setting) and close it again. Then they go back to the first tab and clear the search, and all 128 databases return.</p>
+          </div>
+        </figure>
+        <div class="side-cap">
+          <p class="cap">Searching for “pain”, switching to the Technical tab, sorting by number of people and, on wider screens, opening a database’s card. Screen recording, about 14 seconds, no sound.</p>
+          <p class="rec">Recorded from the published table (OSF version 1).</p>
+          <p class="rm-note">Paused because your device asks for less motion.</p>
+          <button class="toggle" type="button" data-loop-toggle="v-dbf" aria-label="Pause the recording" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+        </div>
+      </div>
+
+      <div class="tool-detail">
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">Who it’s for<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="detail-body" data-fold-body>
+            <p>Researchers and engineers who need recordings of genuine facial expressions, whether to run an experiment or to train and test emotion AI. These databases are scattered across thousands of papers. The Finder puts the 128 publicly available databases our review found into one searchable table, with 32 details per database:</p>
+            <ul class="plain-list">
+              <li class="plain">what emotions it holds and how they were brought about;</li>
+              <li class="plain">who was filmed, and how;</li>
+              <li class="plain">how to get access.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What makes it different<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ul class="features" data-fold-body>
+            <li><b>It comes from a systematic review.</b> We screened 13,900 papers, read 741 in full and included 128 databases. Three of us described every database and checked each other’s work.</li>
+            <li><b>It’s practical.</b> Alongside the science, each entry says how to get the data: where it lives, how access works, and whether its authors confirmed it was still available when we last checked (May 2025).</li>
+            <li><b>It’s precise.</b> Most columns come with a written definition, so you know exactly what a term means in this table.</li>
+            <li><b>It’s published and citable.</b> It is Supplementary Table S1 of our review in Emotion Review (2026).</li>
+          </ul>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What you can do with it<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ol class="dos" data-fold-body>
+            <li>Type a word such as <i>pain</i> or <i>EEG</i> and the table narrows as you type. Each tab searches its own columns, and a filter set on one tab carries to the others.</li>
+            <li>Pick an emotion label from the list to see the databases that use it.</li>
+            <li>Sort by number of people to bring the largest collections to the top.</li>
+            <li>Click a database’s name for a card with everything about it, from how emotions were brought about to the camera set-up.</li>
+          </ol>
+        </section>
+      </div>
+
+      <footer class="tool-foot reveal">
+        <section class="status-block" aria-labelledby="s-database-finder">
+          <h3 class="detail-label" id="s-database-finder">Status</h3>
+          <p>Published in August 2026 with our review in Emotion Review, and archived on OSF (the Open Science Framework, a free archive for research files) as Supplementary Table S1. Availability was last checked with database authors in May 2025.</p>
+        </section>
+        <p class="spec"><span class="spec-label">Format</span>Web table · 32 details per database · created by Yifan Bian, Hyunwoo Kim and Eva Krumhuber, UCL</p>
+      </footer>
+    </article>
+<!-- /TOOL -->
+
+<!-- TOOL: crossread -->
+    <article class="tool" id="crossread" data-tool="crossread" aria-labelledby="t-crossread">
+      <header class="tool-head">
+        <div>
+          <p class="tool-kicker"><span class="idx"><b>02</b> / 05</span><span class="chip chip--dev">In development</span></p>
+          <h2 class="tool-name" id="t-crossread">Crossread</h2>
+          <p class="tool-promise">Read a recording’s faces, voices and words side by side, and see where they disagree.</p>
+        </div>
+        <div class="tool-cta">
+          <div class="btn-row">
+            <a class="btn" href="#contact" data-demo="Crossread" data-site-show="email" hidden>Ask me for a demo</a>
+            <button class="btn btn--ghost" type="button" data-play-target="v-cr-test">Watch the test recording</button>
+          </div>
+          <p class="microcopy" data-site-show="email" hidden>I’ll show it to you over a video call.</p>
+          <p class="date-line">Updated October 2026</p>
+        </div>
+      </header>
+
+      <div class="tool-lead reveal">
+        <div class="lead-in">
+          <p>Crossread working on footage courtesy of NASA/JPL-Caltech. The Voyager 1 team cheers and applauds as engineering data from their spacecraft arrives.</p>
+          <ul>
+            <li>Each lettered box is a face Crossread is following.</li>
+            <li>The panel on the right, headed “Face 8”, reads the face marked H. It shows which of an emotion model’s 40 labels rose furthest above that person’s usual range, and which facial movements it measured.</li>
+            <li>These are the model’s words, not what anyone felt.</li>
+            <li>“V0” is the app’s mark that this emotion model has not yet been checked on real video.</li>
+          </ul>
+        </div>
+        <div>
+          <!-- BEGIN figure (the cleared real-world example; media in media/crossread/) -->
+          <figure class="rw-screen" data-rw-screen>
+            <div class="rw-screen__bar">
+              <span class="rw-screen__chip">In development · V0</span>
+              <span class="rw-screen__meta">Real-world example · 0.25× · computed offline</span>
+              <button class="rw-screen__toggle" type="button" data-rw-toggle hidden>Pause</button>
+            </div>
+            <div class="rw-screen__media">
+              <picture>
+                <source media="(max-width: 640px)" type="image/webp" srcset="media/crossread/voyager-console-phone-poster.webp" width="680" height="1280">
+                <source media="(max-width: 640px)" srcset="media/crossread/voyager-console-phone-poster.jpg" width="680" height="1280">
+                <source type="image/webp" srcset="media/crossread/voyager-console-poster-1100.webp 1100w, media/crossread/voyager-console-poster-1600.webp 1600w, media/crossread/voyager-console-poster-2200.webp 2200w" sizes="(min-width: 1240px) 1100px, 92vw" width="2200" height="1304">
+                <img src="media/crossread/voyager-console-poster-1600.jpg"
+                     srcset="media/crossread/voyager-console-poster-1100.jpg 1100w, media/crossread/voyager-console-poster-1600.jpg 1600w, media/crossread/voyager-console-poster-2200.jpg 2200w"
+                     sizes="(min-width: 1240px) 1100px, 92vw" width="2200" height="1304" decoding="async" loading="lazy"
+                     alt="An in-development emotion-analysis interface running on JPL footage: the Voyager 1 team cheers and applauds around a conference table while the interface draws lettered frames on about a dozen faces. A side panel for face H shows model labels (contentment, triumph, thankfulness / gratitude) on a round chart with one spoke for each of the model's 40 labels. Video courtesy NASA/JPL-Caltech; no endorsement by NASA, JPL or Caltech is implied.">
+              </picture>
+              <video class="rw-screen__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+                <source src="media/crossread/voyager-console-phone.mp4" type="video/mp4" media="(max-width: 640px)">
+                <source src="media/crossread/voyager-console.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption>
+              <p><strong>Real-world example.</strong> The Voyager 1 team at NASA's Jet Propulsion Laboratory on 20 April 2024, as engineering data from the spacecraft arrived for the first time since November 2023. Lettered frames follow the faces the interface finds; the side panel reads face H.</p>
+              <p class="rw-screen__note">In development (V0). Model labels, not feelings. Computed offline, not live: a hand-picked two-second excerpt, slowed to 0.25×.</p>
+              <p class="rw-screen__credit">Video: Courtesy NASA/JPL-Caltech, “Voyager 1 Team Reacts to Receiving Engineering Data From Spacecraft” (JPL b-roll, 20 April 2024), shown with analysis overlays, slowed to 0.25×. <a href="https://vimeo.com/939376171" rel="noopener">Source video</a>. No endorsement by NASA, JPL or Caltech is implied.</p>
+            </figcaption>
+          </figure>
+          <!-- END figure -->
+          <p class="rm-note rw-after">Still, because your device asks for less motion.</p>
+        </div>
+      </div>
+
+      <div class="tool-detail">
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">Who it’s for<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="detail-body" data-fold-body>
+            <p>Researchers who study recorded conversations and interviews, in psychology, human–computer interaction and beyond. Also teams that need to know what a face, a voice and the words were doing at each moment before deciding what it means.</p>
+            <p>You add a video of people talking. Crossread runs more than a dozen published AI models on your Mac and lines up what they find on one timeline:</p>
+            <ul class="plain-list">
+              <li class="plain">which facial muscles moved;</li>
+              <li class="plain">how the head and body moved;</li>
+              <li class="plain">how loud and how high each voice was;</li>
+              <li class="plain">what was said;</li>
+              <li class="plain">what several emotion models make of the face, the voice and the words.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What makes it different<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ul class="features" data-fold-body>
+            <li><b>It never blends everything into a single “emotion score”.</b> Face, voice and words each keep their own model and their own timeline, so you can see where they agree and where they don’t. When a test face says “I did not expect this at all” in a computer voice, a text model reads the words as surprise, a voice model hears only neutral, and Crossread shows both.</li>
+            <li><b>It compares each person with themselves.</b> Readings are shown against that person’s own usual range, not a crowd average.</li>
+            <li><b>It says what it can’t tell you.</b> Every model comes with a model card that lists its limits. The app also marks which analyses a recording can support, and says why when it can’t: for example, when an analysis needs at least 20 seconds and the recording has 19.</li>
+            <li><b>It’s private.</b> Everything runs on your Mac, and nothing is uploaded.</li>
+          </ul>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What you can do with it<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ol class="dos" data-fold-body>
+            <li><b>See which muscles moved.</b> The face is drawn as a turning 3D map of glowing dots that lights up where each movement happened, named in plain words.</li>
+            <li><b>Read a conversation line by line.</b> Each sentence becomes a card showing what the words say, how the voice sounded and what the face did, side by side.</li>
+            <li><b>Find out who said what.</b> It matches voices to faces by checking whether a mouth moved while a voice spoke, and flags lines it isn’t sure about.</li>
+            <li><b>Ask plain questions,</b> for example how long a person spoke and how loud and high their voice was, and see which questions this recording can actually answer.</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="test-face" aria-labelledby="t-crossread-test">
+        <div class="sub-head reveal">
+          <h3 class="sub-title" id="t-crossread-test">A test with a known answer</h3>
+          <p>A computer-generated test face, animated with movements scripted in advance, was run through Crossread, so the right answer was known. Each facial movement has a standard number in the Facial Action Coding System (FACS), the standard way to describe facial movements. That is what the “AU” codes in these pictures are: 12, for example, is the lip-corner pull of a smile.</p>
+        </div>
+        <div class="gallery">
+          <figure class="g-12 reveal">
+            <div class="shot">
+              <div class="loop" id="v-cr-test" data-loop data-src="media/crossread/test-face-loop.mp4">
+                <picture>
+                  <source type="image/webp" srcset="media/crossread/test-face-loop-poster.webp">
+                  <img src="media/crossread/test-face-loop-poster.jpg" width="1280" height="742" loading="lazy" decoding="async"
+                       alt="Crossread’s face-movements window. A synthetic face looks surprised beside a 3D map of the face made of glowing dots. The outer brows glow gold as the strongest movement, and labels such as “Inner brows raised” and “Upper lids raised” name the others."
+                       aria-describedby="vd-cr-test">
+                </picture>
+                <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+              </div>
+              <p class="sr-only" id="vd-cr-test">The recording: a synthetic test face moves through surprise, a frown, a blink, sadness and a smile. On the turning 3D map beside it, each measured movement lights up where it happens and is labelled in plain words.</p>
+            </div>
+            <figcaption class="cap-row">
+              <span class="cap">A computer-generated test face moves through surprise, a frown, a blink, sadness and a smile. Crossread lights up the facial movements it measured on a turning 3D map of the face, named in plain words; the strongest glows gold. Screen recording, 12 seconds, no sound.<span class="rm-note">Paused because your device asks for less motion.</span></span>
+              <button class="toggle" type="button" data-loop-toggle="v-cr-test" aria-label="Pause the recording" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+            </figcaption>
+          </figure>
+          <figure class="g-12 reveal">
+            <a class="shot zoomable" href="media/crossread/test-face-four-moments.jpg" data-zoom>
+              <picture>
+                <source type="image/webp" srcset="media/crossread/test-face-four-moments.webp">
+                <img src="media/crossread/test-face-four-moments.jpg" width="2400" height="1400" loading="lazy" decoding="async" alt="Four moments from Crossread on a synthetic test face: surprise, a frown, a sad face and a smile. Each sits beside a glowing 3D map of the face, with the measured movements lit and labelled, such as “Brows lowered”, “Lip corners pulled down” and “Lip corners pulled up”.">
+              </picture>
+              <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+            </a>
+            <figcaption class="cap">Four moments from the test face. Crossread found most of the scripted movements at the right moments: raised brows for surprise, lowered brows for the frown, lip corners pulled down for sadness, and raised cheeks and lip corners for the smile. It also lit some movements that were not scripted, such as a nose wrinkle during surprise, and it missed the lowered brows of the sad face. A demonstration on a synthetic face, not proof that it works on real people.</figcaption>
+          </figure>
+        </div>
+        <p class="credit gallery-note reveal">Synthetic face: ICT Face Model Light from ICT-FaceKit (USC Institute for Creative Technologies), MIT licence.</p>
+      </section>
+
+      <footer class="tool-foot reveal">
+        <section class="status-block" aria-labelledby="s-crossread">
+          <h3 class="detail-label" id="s-crossread">Status</h3>
+          <p>In development for Mac and not released. It analyses a recording after you add it, not live, and it handles speech in English and Mandarin. The test face is computer-generated; the real-world example uses footage courtesy of NASA/JPL-Caltech.</p>
+        </section>
+        <p class="spec"><span class="spec-label">How it’s built</span>Designed and built by me with Claude Code since September 2026 · Python back end (FastAPI) running about twenty analyses (October 2026) from more than a dozen published models on Apple silicon (PyTorch, ONNX Runtime, MLX) · matches voices to faces by lip movement · runs a vision-language model on the laptop · web interface with WebGL · automated tests</p>
+      </footer>
+    </article>
+<!-- /TOOL -->
+
+<!-- TOOL: literature-galaxy -->
+    <article class="tool" id="literature-galaxy" data-tool="literature-galaxy" aria-labelledby="t-literature-galaxy">
+      <header class="tool-head">
+        <div>
+          <p class="tool-kicker"><span class="idx"><b>03</b> / 05</span><span class="chip chip--live">Live preview</span></p>
+          <h2 class="tool-name" id="t-literature-galaxy">Literature Galaxy</h2>
+          <p class="tool-promise">See a research library as a galaxy of papers, and where they agree and disagree.</p>
+        </div>
+        <div class="tool-cta">
+          <div class="btn-row">
+            <a class="btn" href="tools/literature-galaxy/">Try the live preview <svg class="go" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <button class="btn btn--ghost" type="button" data-play-target="v-lg-ask">Watch a question in action</button>
+          </div>
+          <p class="microcopy">Preview snapshot, October 2026 · opens the tool in development</p>
+          <p class="date-line">Updated October 2026</p>
+        </div>
+      </header>
+
+      <div class="tool-lead media-split reveal" data-galaxy-host>
+        <figure>
+          <div class="panel-galaxy">
+            <span class="panel-tag"><i aria-hidden="true"></i>Real data · drag to turn</span>
+            <div class="galaxy" data-galaxy
+                 data-src="assets/galaxy/galaxy-data.json"
+                 data-poster="assets/galaxy/poster.jpg"
+                 data-mode="panel"
+                 data-labels="none"
+                 data-interactive="true"
+                 data-align="center"
+                 data-avoid=".panel-galaxy .panel-tag"
+                 role="img"
+                 aria-label="Literature Galaxy: more than 1,600 papers from my research library, coloured by topic group, with fine lines joining papers whose texts read alike."
+                 data-canvas-label="Literature Galaxy: more than 1,600 papers from my research library, coloured by topic group, with fine lines joining papers whose texts read alike."></div>
+          </div>
+        </figure>
+        <div class="side-cap">
+          <p class="cap">Each point is a document in my research library, placed near documents whose full text covers similar ground and coloured by topic group. Drag to turn it.</p>
+          <p class="rec">Drawn in your browser from the library as of October 2026.</p>
+          <p class="rm-note">Still, because your device asks for less motion.</p>
+          <button class="toggle" type="button" data-galaxy-toggle aria-label="Pause the galaxy" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+        </div>
+      </div>
+      <div class="topic-key-wrap" data-topic-key data-src="assets/galaxy/galaxy-data.json" hidden>
+        <p class="topic-key-title">Topic groups in the map, largest first</p>
+        <ul class="topic-key"></ul>
+      </div>
+
+      <div class="tool-detail">
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">Who it’s for<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="detail-body" data-fold-body>
+            <p>Students and researchers finding their way around facial expression and emotion research, and anyone curious about how science argues.</p>
+            <p>Papers from my research library are placed next to papers whose full text covers similar ground, so topics gather into clusters you can see. AI (Claude) read each paper’s full text, where it could be read, for what it argues. Where a paper takes a side (about half do), the AI linked it to statements the field keeps returning to, such as whether smiles that crinkle the eyes reveal real enjoyment. Each link records whether the paper supports the statement, partly agrees with it or challenges it.</p>
+          </div>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What makes it different<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ul class="features" data-fold-body>
+            <li><b>It maps disagreement, not just topics.</b> Pick a statement and the papers on each side light up. They are split by the kind of evidence behind them: their own data, a review, or argument.</li>
+            <li><b>It shows why the sides differ.</b> It compares the study designs behind each side, for example how many papers on each side used posed faces and how many used spontaneous ones.</li>
+            <li><b>In the preview, nothing is generated while you use it.</b> The reading was done ahead of time, so every answer is a list of papers you can check, not a paragraph of AI prose.</li>
+            <li><b>It’s honest about what it is:</b> one researcher’s library, read with AI and spot-checked. It is not a meta-analysis (a formal statistical review of all the studies on a question).</li>
+          </ul>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What you can do with it<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ol class="dos" data-fold-body>
+            <li><b>Ask the galaxy a question</b> in plain words, such as “Do smiles show real enjoyment?” or “Are facial expressions of emotion recognised across cultures?”. You’ll see the statements it matches, with the papers that support, partly agree with or challenge each one. It works best with questions about what the research agrees or disagrees on.</li>
+            <li><b>Turn the galaxy</b> and point at a star to see which paper it is.</li>
+            <li><b>Browse the library:</b> look a paper up, narrow the list down, and show what you found on the map.</li>
+            <li><b>Walk the map of the papers.</b> Two papers sit close together when their full texts talk about the same things, so neighbourhoods form on their own. Click one to see the paper, what it argues and where it sits.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="gallery" aria-label="More from Literature Galaxy">
+        <figure class="g-7 reveal">
+          <div class="shot">
+            <div class="loop" id="v-lg-ask" data-loop data-src="media/literature-galaxy/claim-loop.mp4">
+              <picture><source type="image/webp" srcset="media/literature-galaxy/claim-loop-poster.webp"><img src="media/literature-galaxy/claim-loop-poster.jpg" width="1280" height="800" loading="lazy" decoding="async"
+                   alt="Literature Galaxy’s live preview after the question “Are facial expressions of emotion recognised across cultures?”: the papers that take a side on the statement that a few basic emotions are recognised across cultures stay lit, in a cluster near the topic “Theories of emotion”, while the rest of the library is dimmed and faded topic names surround them."
+                   aria-describedby="vd-lg-ask"></picture>
+              <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            </div>
+            <p class="sr-only" id="vd-lg-ask">The recording: after a question about whether facial expressions of emotion are recognised across cultures, the papers that take a side on the matching statement stay lit while the rest of the galaxy is dimmed. The view then returns to the whole galaxy turning, coloured by topic, until the question is sent again: the galaxy dims and the camera flies in to the lit papers.</p>
+          </div>
+          <figcaption class="cap-row">
+            <span class="cap">Asking the live preview whether facial expressions of emotion are recognised across cultures: the papers that take a side light up, and the galaxy turns to them. Recorded from the live preview, no sound.<span class="rm-note">Paused because your device asks for less motion.</span></span>
+            <button class="toggle" type="button" data-loop-toggle="v-lg-ask" aria-label="Pause the recording" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+          </figcaption>
+        </figure>
+        <figure class="g-5 reveal">
+          <a class="shot zoomable" href="media/literature-galaxy/answer.jpg" data-zoom>
+            <picture><source type="image/webp" srcset="media/literature-galaxy/answer.webp"><img src="media/literature-galaxy/answer.jpg" width="1280" height="900" loading="lazy" decoding="async" alt="An answer card from the live preview. Under the question “Do facial expressions reliably reveal what a person feels?”, the statement “Facial movements cannot be read as signs of inner emotional states without context” is listed with the 19 papers that support it. The first four are named, each with its year and the kind of evidence behind it (argument or own data); a line says ten more are on the map and five more, without a checked DOI, are not named; two buttons light the papers on the galaxy or open the statement on the map."></picture>
+            <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+          </a>
+          <figcaption class="cap">Part of an answer: one statement, the papers that support it, and the kind of evidence each one offers. Every paper named is one you can look up.</figcaption>
+        </figure>
+      </div>
+
+      <footer class="tool-foot reveal">
+        <section class="status-block" aria-labelledby="s-literature-galaxy">
+          <h3 class="detail-label" id="s-literature-galaxy">Status</h3>
+          <ul>
+            <li>This is a live preview: a snapshot of the tool in development, taken in October 2026.</li>
+            <li>It maps more than 1,600 papers from my research library.</li>
+            <li>It is one researcher’s library, read with AI and spot-checked, not a meta-analysis.</li>
+            <li>The spot-check, in September 2026: 50 of the AI’s links between papers and statements were picked at random and re-read by a second AI pass, not by a person, and 44 held up. So treat any single link as a lead, and check the paper.</li>
+            <li>In the preview, a paper is named only if its DOI (its permanent publication link) has been checked against Crossref, the DOI registry. Other papers appear as unnamed points.</li>
+          </ul>
+        </section>
+        <p class="spec"><span class="spec-label">How it’s built</span>Designed and built by me with Claude Code since September 2026 · papers placed by how alike their full texts are and grouped into topics (TF-IDF, LSA, nearest-neighbour graph, Louvain communities, 3D t-SNE) · each AI-made link must point to a sentence in its paper, checked by a script · three.js and d3</p>
+      </footer>
+    </article>
+<!-- /TOOL -->
+
+<!-- TOOL: face-value -->
+    <article class="tool" id="face-value" data-tool="face-value" aria-labelledby="t-face-value">
+      <header class="tool-head">
+        <div>
+          <p class="tool-kicker"><span class="idx"><b>04</b> / 05</span><span class="chip chip--live">Live preview</span></p>
+          <h2 class="tool-name" id="t-face-value">Face Value</h2>
+          <p class="tool-promise">Build facial expressions from named movements on a 3D head, and see what the evidence says they mean.</p>
+          <p class="tagline">Because a face shouldn’t be taken at face value.</p>
+        </div>
+        <div class="tool-cta">
+          <div class="btn-row">
+            <a class="btn" href="tools/face-value/">Try the live preview <svg class="go" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <button class="btn btn--ghost" type="button" data-play-target="v-fv-timeline">Watch the timeline in action</button>
+          </div>
+          <p class="microcopy">Preview snapshot, October 2026 · opens the tool in development · about 3 MB, best on a laptop or tablet</p>
+          <p class="date-line">Updated October 2026</p>
+        </div>
+      </header>
+
+      <div class="tool-lead media-split reveal">
+        <figure>
+          <div class="shot">
+            <div class="loop" id="v-fv-compose" data-loop data-src="media/face-value/compose-loop.mp4" data-src-phone="media/face-value/compose-loop-phone.mp4">
+              <picture><source media="(max-width: 640px)" type="image/webp" srcset="media/face-value/compose-loop-phone-poster.webp" width="720" height="1280"><source media="(max-width: 640px)" srcset="media/face-value/compose-loop-phone-poster.jpg" width="720" height="1280"><source type="image/webp" srcset="media/face-value/compose-loop-poster.webp"><img src="media/face-value/compose-loop-poster.jpg" width="1280" height="788" loading="lazy" decoding="async"
+                   alt="Face Value in its dark look: on the left, the list of facial movements with the cheek raise and the lip-corner pull switched on; in the middle, a synthetic clay head smiles with both movements labelled; on the right, a reading panel headed “Pleasant feeling” (most likely happiness, amusement or joy, with moderate evidence) and the published evidence for that face by type of study."
+                   aria-describedby="vd-fv-compose"></picture>
+              <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            </div>
+            <p class="sr-only" id="vd-fv-compose">The recording: it starts on a smile made from the cheek raise and the lip-corner pull, read as a pleasant feeling. The movements are cleared, and the inner brow raise, the outer brow raise and the jaw drop are switched on one by one: the head looks surprised, and the panel changes to surprise or awe, with limited evidence and a note that the whole combination is untested. Then the smile is built again.</p>
+          </div>
+        </figure>
+        <div class="side-cap">
+          <p class="cap">Switching facial movements on and off. The head changes, and the reading panel updates with the published evidence for each new face. The bar at the top shows how much of the matching evidence points to each family of feelings; it is not a measure of how sure anyone is about this face. Screen recording, no sound.</p>
+          <p class="credit">Synthetic face: ICT Face Model Light from ICT-FaceKit (USC Institute for Creative Technologies), MIT licence.</p>
+          <p class="rm-note">Paused because your device asks for less motion.</p>
+          <button class="toggle" type="button" data-loop-toggle="v-fv-compose" aria-label="Pause the recording" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+          <p class="side-note"><b>About the numbers in the pictures.</b> Each facial movement has a standard number in the Facial Action Coding System (FACS), which researchers use to describe faces. 12, for example, is the lip-corner pull of a smile. That’s what the “AU” numbers in the pictures are.</p>
+        </div>
+      </div>
+
+      <div class="tool-detail">
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">Who it’s for<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="detail-body" data-fold-body>
+            <p>Researchers and students who work with facial expressions, teams building or testing face-reading AI, and anyone who has wondered whether a smile always means happy.</p>
+            <p>You switch facial movements on by name (a cheek raise, a nose wrinkle, lowered brows), and a realistic synthetic clay head makes the face. Beside it, a reading panel says:</p>
+            <ul class="plain-list">
+              <li class="plain">what published studies link that face to;</li>
+              <li class="plain">how strong the evidence is;</li>
+              <li class="plain">which study each statement rests on.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What makes it different<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ul class="features" data-fold-body>
+            <li><b>It doesn’t tell you what someone feels.</b> You build a face, and it shows what published studies found for it, how strong that evidence is, and where studies disagree.</li>
+            <li><b>It keeps three kinds of evidence apart:</b> what people who felt an emotion actually did with their faces, what people did when asked to pose it, and what observers read into a face.</li>
+            <li><b>It shows how solid each reading is.</b> “Evidence” says how strong the research behind it is. “Confidence” also asks whether anyone has studied this exact combination of movements. Combinations nobody has tested are labelled “untested”.</li>
+            <li><b>The public preview shows no real person.</b> Every face is a synthetic 3D head.</li>
+          </ul>
+        </section>
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What you can do with it<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ol class="dos" data-fold-body>
+            <li><b>Build a face.</b> Hover over a movement to preview it on the head; click to add it. Try the “textbook” surprise face (raised brows, wide eyes, dropped jaw) and see how often published studies found it in people who really were surprised.</li>
+            <li><b>Step through face-tracking data, moment by moment.</b> Load output from tools such as OpenFace, Py-Feat or AFFDEX, or try the built-in synthetic example. The head replays each moment, and lip movement that may just be speech is flagged.</li>
+            <li><b>Follow any reading back to its source study.</b> Every statement in the reading panel names the published study it rests on.</li>
+            <li><b>Practise the statistics</b> behind such studies in a built-in lab that exports matching R and Python code.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="gallery" aria-label="More from Face Value">
+        <figure class="g-7 reveal" id="face-value-timeline">
+          <div class="shot">
+            <div class="loop" id="v-fv-timeline" data-loop data-src="media/face-value/timeline-loop.mp4">
+              <picture><source type="image/webp" srcset="media/face-value/timeline-loop-poster.webp"><img src="media/face-value/timeline-loop-poster.jpg" width="1280" height="720" loading="lazy" decoding="async"
+                   alt="Face Value’s timeline with its built-in synthetic example: tracks for seven facial movements and a synthetic voice level, the playhead at 4.00 seconds, and the clay head smiling beside the reading for that moment, “Pleasant feeling”."
+                   aria-describedby="vd-fv-timeline"></picture>
+              <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            </div>
+            <button class="zoom-btn" type="button" data-zoom="video" data-zoom-src="media/face-value/timeline-loop.mp4" data-zoom-poster="media/face-value/timeline-loop-poster.jpg" data-zoom-cap="Reading face-tracking data moment by moment, using made-up example data." aria-label="Enlarge the recording"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</button>
+            <p class="sr-only" id="vd-fv-timeline">The recording: the playhead moves along the synthetic example. At 4 seconds the head smiles and the panel reads a pleasant feeling; at 7.5 seconds the lips part while the synthetic voice is on, and the panel says to check speech or breathing first; at 9.2 seconds lowered brows with parted lips read as pain, or anger or sadness; at 2.5 seconds no movement is active, and the panel notes that a reading of the evidence is not a measurement of what anyone felt.</p>
+          </div>
+          <figcaption class="cap-row">
+            <span class="cap">Reading face-tracking data moment by moment, using made-up example data. The panel flags lip movement that may just be speech. Screen recording, no sound.<span class="rm-note">Paused because your device asks for less motion.</span></span>
+            <button class="toggle" type="button" data-loop-toggle="v-fv-timeline" aria-label="Pause the recording" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+          </figcaption>
+        </figure>
+        <figure class="g-5 reveal">
+          <a class="shot zoomable" href="media/face-value/compose.jpg" data-zoom>
+            <picture><source type="image/webp" srcset="media/face-value/compose.webp"><img src="media/face-value/compose.jpg" width="1600" height="985" loading="lazy" decoding="async" alt="Face Value with four movements switched on, the inner brow raise, the outer brow raise, the upper lid raise and the jaw drop: the clay head makes the textbook surprise face with each movement labelled, and the reading panel says “Surprise or awe”, with limited evidence, and shows how often published studies found this combination in people who were really surprised, above the evidence by type of study."></picture>
+            <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+          </a>
+          <figcaption class="cap">The “textbook” surprise face, built from four named movements: the panel shows how often studies of people who were really surprised found it, with the evidence kept apart by type of study.</figcaption>
+        </figure>
+      </div>
+      <p class="credit gallery-note reveal">Synthetic face: ICT Face Model Light from ICT-FaceKit (USC Institute for Creative Technologies), MIT licence.</p>
+
+      <footer class="tool-foot reveal">
+        <section class="status-block" aria-labelledby="s-face-value">
+          <h3 class="detail-label" id="s-face-value">Status</h3>
+          <p>This is a live preview: a snapshot of the tool in development, taken in October 2026.</p>
+          <ul>
+            <li>The evidence comes from other researchers’ published studies, each cited in the tool.</li>
+            <li>Face Value’s own readings and grades are still being developed and are not published results.</li>
+            <li>It accompanies a review of facial movements and emotion that is in progress.</li>
+            <li>It works best on a laptop or tablet.</li>
+          </ul>
+        </section>
+        <p class="spec"><span class="spec-label">How it’s built</span>Built with Claude Code · WebGL clay head (three.js, ICT Face Model Light) driven by named facial movements · evidence base of published studies with its own scoring rules · reads OpenFace, Py-Feat, FaceReader, AFFDEX and MediaPipe output · statistics lab with R and Python export</p>
+      </footer>
+    </article>
+<!-- /TOOL -->
+
+<!-- TOOL: self-discovery -->
+    <article class="tool" id="self-discovery" data-tool="self-discovery" aria-labelledby="t-self-discovery">
+      <header class="tool-head">
+        <div>
+          <p class="tool-kicker"><span class="idx"><b>05</b> / 05</span><span class="chip chip--dev">In development</span></p>
+          <h2 class="tool-name" id="t-self-discovery">Self-Discovery</h2>
+          <p class="tool-promise">Name what you feel, see your week, and test what really helps.</p>
+        </div>
+        <div class="tool-cta">
+          <div class="btn-row">
+            <a class="btn" href="#contact" data-demo="Self-Discovery" data-site-show="email" hidden>Ask me for a demo</a>
+            <a class="btn btn--ghost" href="#self-discovery-gallery">See more screens</a>
+          </div>
+          <p class="microcopy" data-site-show="email" hidden>I’ll show it to you over a video call.</p>
+          <p class="date-line">Updated November 2026</p>
+        </div>
+      </header>
+
+      <div class="tool-lead sd-lead">
+        <figure class="sticky-media reveal">
+          <div class="stage">
+            <a class="zoomable" href="media/self-discovery/feelings.jpg" data-zoom data-zoom-light>
+              <picture>
+                <source type="image/webp" srcset="media/self-discovery/feelings.webp">
+                <img src="media/self-discovery/feelings.jpg" width="1440" height="1628" loading="lazy" decoding="async"
+                     alt="The Mac app’s feelings view, showing all feelings: a flower of ten pastel petals, one for each family of feelings, such as Fear &amp; anxiety, Surprise &amp; confusion, Enjoyment, Sadness and Calm &amp; at ease. Each petal holds small character faces, one per feeling, milder near the middle and stronger towards the tip; two neighbouring faces in the Fear &amp; anxiety petal, stressed and anxious, are circled as the feelings chosen in this demo. Above the flower is a row of the person’s usual feelings, such as content, calm and pleased.">
+              </picture>
+              <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+            </a>
+          </div>
+          <figcaption class="cap">Choosing a feeling on the Mac: ten families of feelings form a flower. Every feeling sits on its family’s petal, milder near the middle and stronger towards the tip. Demo state.</figcaption>
+        </figure>
+
+        <div class="tool-detail">
+          <section class="detail-row reveal" data-fold>
+            <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">Who it’s for<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+            <div class="detail-body" data-fold-body>
+              <p>Anyone who wants to understand their own moods and days, privately.</p>
+              <ul class="plain-list">
+                <li class="plain">You check in a few times a day, in seconds: what you’re doing, how you feel, and what’s helping or getting in the way.</li>
+                <li class="plain">Over the weeks, Self-Discovery shows your week at a glance and finds what tends to go with your better and worse days.</li>
+                <li class="plain">It also helps you test a hunch fairly.</li>
+              </ul>
+            </div>
+          </section>
+          <section class="detail-row reveal" data-fold>
+            <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What makes it different<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+            <ul class="features" data-fold-body>
+              <li><b>Words first.</b> You start from a precise feeling (anxious, drained, content) rather than a number. Close feelings are shown side by side so you can tell them apart, and mood and energy are worked out from the words you choose.</li>
+              <li><b>Honest about uncertainty.</b> Every pattern says how sure it is, shows the days behind it, and reminds you it’s a lead to test, not proof of cause.</li>
+              <li><b>From hunch to fair test.</b> Turn a pattern into a small experiment, for example no coffee after 2 pm: the app picks the days at random and compares your sleep on those days with the rest.</li>
+              <li><b>Private by design.</b>
+                <ul>
+                  <li>There’s no account, no ads and no server. Your record stays on your own devices, and you can export everything whenever you like.</li>
+                  <li>The Mac and iPhone versions are designed to sync directly over your home Wi-Fi, encrypted.</li>
+                  <li>Optional weather lookups send only an approximate location to a public weather service.</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <div class="tool-detail sd-more">
+        <section class="detail-row reveal" data-fold>
+          <h3 class="detail-label"><button class="fold-btn" type="button" aria-expanded="true">What you can do with it<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <ol class="dos" data-fold-body>
+            <li><b>Check in in seconds:</b> tap, or type a sentence and the app picks the matching options for you.</li>
+            <li><b>Find the right word.</b> Open a family of feelings and compare neighbours. For example, anxious usually lasts hours and is about something ahead; afraid usually lasts minutes and is about a clear threat.</li>
+            <li><b>See your week:</b> how you rated each day (for example, emotional wellbeing) against your usual range, with your feelings and sleep beneath it.</li>
+            <li><b>Ask “why?”.</b> See what tends to go with higher energy or a better mood, how sure the app is, and the individual days behind it.</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="gallery" id="self-discovery-gallery" aria-label="More screens from Self-Discovery">
+        <figure class="g-7 reveal">
+          <div class="stage">
+            <a class="zoomable" href="media/self-discovery/week.jpg" data-zoom data-zoom-light>
+              <picture>
+                <source type="image/webp" srcset="media/self-discovery/week.webp">
+                <img src="media/self-discovery/week.jpg" width="2000" height="1124" loading="lazy" decoding="async"
+                     alt="A week view on the Mac, on the Emotional wellbeing tab. A sentence sums up the week against the person’s usual range. A line of daily ratings has a small face for each day against a shaded band for the usual range, with the highest day marked; below it are each day’s feelings and hours slept.">
+              </picture>
+              <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+            </a>
+          </div>
+          <figcaption class="cap">A week at a glance: how each day was rated against the usual range, a face for each day, and the feelings and sleep behind it. Demo data.</figcaption>
+        </figure>
+        <figure class="g-5 reveal">
+          <div class="stage">
+            <a class="zoomable" href="media/self-discovery/why.jpg" data-zoom data-zoom-light>
+              <picture>
+                <source type="image/webp" srcset="media/self-discovery/why.webp">
+                <img src="media/self-discovery/why.jpg" width="2000" height="1940" loading="lazy" decoding="async"
+                     alt="A pattern card on the Mac: mental clarity tended to be higher on days when a feeling of enjoyment was named earlier, shown as the size of the difference with a likely range and a Clear badge. Two soft curves compare the check-ins on each side. Under How sure: how many check-ins were compared, that the pattern is unlikely to be chance, and that it holds with time of day and weekends held constant. Below are sections for other things that could explain it, the individual days behind it and the numbers, and a Test this button.">
+              </picture>
+              <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+            </a>
+          </div>
+          <figcaption class="cap">Why the app shows a pattern: how big the difference is, a likely range, and checks for chance and other explanations. Ratings run from 0 to 10; “Clear” is the app’s label for a pattern it is fairly sure of. Demo data.</figcaption>
+        </figure>
+        <figure class="g-8c reveal">
+          <div class="stage">
+            <a class="zoomable" href="media/self-discovery/experiment.jpg" data-zoom data-zoom-light>
+              <picture>
+                <source type="image/webp" srcset="media/self-discovery/experiment.webp">
+                <img src="media/self-discovery/experiment.jpg" width="2000" height="1408" loading="lazy" decoding="async"
+                     alt="An experiment two weeks in: “Does avoiding caffeine after 2 pm improve my sleep?”. A note says the answer is not clear yet: the likely range of the difference in sleep quality between no-caffeine-after-2-pm days and normal-caffeine days still includes no difference, with a few days left and a warning not to change course because of it. A dot chart compares the two kinds of day, and a schedule shows the days of the experiment, each assigned to one condition in random order.">
+              </picture>
+              <span class="zoom-btn" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M7.5 1.5h3v3M4.5 10.5h-3v-3M10.5 1.5 7 5M1.5 10.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Enlarge</span>
+            </a>
+          </div>
+          <figcaption class="cap">From hunch to fair test: no caffeine after 2 pm, on days the app picks at random. Two weeks in, it says plainly that the answer is not clear yet. Demo data.</figcaption>
+        </figure>
+      </div>
+
+      <section class="about-words reveal" aria-labelledby="t-about-words">
+        <h3 class="detail-label" id="t-about-words">About the words</h3>
+        <ul>
+          <li>Some words, and the distinctions between close feelings, are inspired by Brené Brown’s <cite>Atlas of the Heart</cite> (2021).</li>
+          <li>Typical durations draw on research on how long emotions last (for example, Verduyn &amp; Lavrijsen, 2015).</li>
+          <li>Research suggests that describing feelings precisely goes with handling them better, though most of that evidence shows a link, not cause and effect.</li>
+          <li>These words are a guide for describing experience, not a diagnosis. When heavy feelings come up, the app points to support.</li>
+        </ul>
+      </section>
+
+      <footer class="tool-foot reveal">
+        <section class="status-block" aria-labelledby="s-self-discovery">
+          <h3 class="detail-label" id="s-self-discovery">Status</h3>
+          <p>In development for Mac. An early iPhone version exists but isn’t ready yet. Not released. Every screen shown here uses made-up demo data.</p>
+        </section>
+        <p class="spec"><span class="spec-label">How it’s built</span>Built with Claude Code since October 2026 · native SwiftUI app for Mac (iPhone version in progress) · statistics computed on the device · encrypted device-to-device sync (tested over the local network) · automated tests</p>
+      </footer>
+    </article>
+<!-- /TOOL -->
+
+  </div>
+
+  <section class="page-close" id="contact" aria-labelledby="close-title">
+    <div class="wrap">
+      <div class="contact-panel reveal">
+        <div>
+          <h2 class="h2" id="close-title">Want a closer look?</h2>
+          <p class="lead" data-site-show="email" hidden>If you’d like a demo, want to use one of these tools in your own work, or have an idea for one, get in touch.</p>
+          <p class="lead" data-site-hide="email">Literature Galaxy and Face Value have live previews you can try in your browser now, and my papers are on Google Scholar.</p>
+        </div>
+        <div class="email-box">
+          <div data-site-show="email" hidden>
+            <p class="email-label">Email</p>
+            <p class="email-addr" data-site-text="email"></p>
+            <div class="btn-row">
+              <a class="btn" href="#contact" data-site-href="email">Email me</a>
+              <button class="btn btn--ghost" type="button" data-copy-site="email" data-toast="Email address copied">Copy email</button>
+            </div>
+          </div>
+          <div class="contact-links">
+            <p class="email-label" data-site-hide="email">Try them</p>
+            <a class="arrow-link" href="tools/literature-galaxy/" data-site-hide="email">Literature Galaxy, live preview</a>
+            <a class="arrow-link" href="tools/face-value/" data-site-hide="email">Face Value, live preview</a>
+            <p class="email-label">Profiles</p>
+            <a class="arrow-link" href="https://scholar.google.com/citations?user=1NM05PoAAAAJ&amp;hl=en">Google Scholar</a>
+            <a class="arrow-link" data-site-show="linkedin" data-site-href="linkedin" hidden>LinkedIn</a>
+            <a class="arrow-link" data-site-show="github" data-site-href="github" hidden>GitHub</a>
+            <a class="arrow-link" href="about.html#contact" data-site-show="email cv linkedin github ucl" hidden>More ways to reach me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <p class="who">Yifan Bian · PhD researcher, Experimental Psychology, University College London</p>
+    <ul class="foot-links">
+      <li data-site-show="email" hidden>Email <a href="#contact" data-site-href="email" data-site-text="email"></a></li>
+      <li><a href="https://scholar.google.com/citations?user=1NM05PoAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li data-site-show="linkedin" hidden><a data-site-href="linkedin">LinkedIn</a></li>
+      <li data-site-show="github" hidden><a data-site-href="github">GitHub</a></li>
+    </ul>
+    <p>Designed and built with Claude Code. Set in Sora and DM Mono.</p>
+    <p>© 2026 Yifan Bian</p>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" data-toast-el></div>
+
+<script src="assets/galaxy/galaxy-hero.js" defer></script>
+<script src="script.js" defer></script>
+</body>
+</html>
