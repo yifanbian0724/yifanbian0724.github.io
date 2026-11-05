@@ -21,13 +21,12 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Yifan Bian, PhD researcher in Experimental Psychology at UCL: how real faces show emotion, and how well AI can read them. Beside the words, a galaxy of glowing points, each a document in the research library.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="assets/galaxy/galaxy-data.json" as="fetch" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap"></noscript>
 <link rel="stylesheet" href="style.css">
-<noscript><style>.hero > .galaxy--wide { background: url("assets/galaxy/poster.jpg") right center / cover no-repeat; } .hero > .galaxy--phone { background: url("assets/galaxy/poster-narrow.jpg") center / cover no-repeat; } .toggle { display: none; }</style></noscript>
+<noscript><style>.panel-galaxy > .galaxy { background: url("assets/galaxy/poster.jpg") center / cover no-repeat; } .toggle { display: none; }</style></noscript>
 </head>
 <body class="has-hero">
 <a class="skip" href="#main">Skip to content</a>
@@ -49,27 +48,59 @@
   <!-- HERO: the live Literature Galaxy behind the name. A wide mount (behind and right of the name) and a phone
        mount (a band across the top); only the one that is displayed starts. -->
   <section class="hero" data-hero aria-labelledby="hero-name">
-    <div class="galaxy galaxy--wide" data-galaxy
-         data-src="assets/galaxy/galaxy-data.json"
-         data-poster="assets/galaxy/poster.jpg"
-         data-poster-narrow="assets/galaxy/poster-narrow.jpg"
-         data-mode="hero"
-         data-labels="none"
-         data-interactive="false"
-         data-align="right"
-         data-avoid=".site-header .nav, .hero-copy, .stat-chips, .galaxy-note"
-         role="img"
-         aria-label="A slowly turning 3D map of the documents in my research library, coloured by topic group."></div>
-    <div class="galaxy galaxy--phone" data-galaxy
-         data-src="assets/galaxy/galaxy-data.json"
-         data-poster="assets/galaxy/poster-narrow.jpg"
-         data-mode="panel"
-         data-labels="none"
-         data-interactive="false"
-         data-align="center"
-         data-avoid=".site-header .nav, .hero-copy .eyebrow"
-         role="img"
-         aria-label="A slowly turning 3D map of the documents in my research library, coloured by topic group."></div>
+    <!-- face wall: start -->
+    <div class="facewall" data-facewall role="img" aria-label="A wall of candid photos of people of different ages and backgrounds, some of them public figures. Each face carries the facial action units an open detector found in it, such as AU6, AU12 and AU25.">
+      <div class="face"><img src="assets/faces/f33-320.webp" srcset="assets/faces/f33-176.webp 176w, assets/faces/f33-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU6 · AU7 · AU12</span><span class="t-short">AU 6·7·12</span></span></div>
+      <div class="face"><img src="assets/faces/f08-320.webp" srcset="assets/faces/f08-176.webp 176w, assets/faces/f08-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU17</span><span class="t-short">AU 4·17</span></span></div>
+      <div class="face"><img src="assets/faces/f16-320.webp" srcset="assets/faces/f16-176.webp 176w, assets/faces/f16-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU1 · AU2 · AU4</span><span class="t-short">AU 1·2·4</span></span></div>
+      <div class="face"><img src="assets/faces/f22-320.webp" srcset="assets/faces/f22-176.webp 176w, assets/faces/f22-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4</span><span class="t-short">AU 4</span></span></div>
+      <div class="face"><img src="assets/faces/p08-320.webp" srcset="assets/faces/p08-176.webp 176w, assets/faces/p08-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag is-none">No AU found</span></div>
+      <div class="face"><img src="assets/faces/p38-320.webp" srcset="assets/faces/p38-176.webp 176w, assets/faces/p38-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU12 · AU25</span><span class="t-short">AU 4·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/f25-320.webp" srcset="assets/faces/f25-176.webp 176w, assets/faces/f25-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU10</span><span class="t-short">AU 4·6·10</span></span></div>
+      <div class="face"><img src="assets/faces/p20-320.webp" srcset="assets/faces/p20-176.webp 176w, assets/faces/p20-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU7</span><span class="t-short">AU 7</span></span></div>
+      <div class="face"><img src="assets/faces/p16-320.webp" srcset="assets/faces/p16-176.webp 176w, assets/faces/p16-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4</span><span class="t-short">AU 4</span></span></div>
+      <div class="face"><img src="assets/faces/p12-320.webp" srcset="assets/faces/p12-176.webp 176w, assets/faces/p12-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU10 · AU12 · AU25</span><span class="t-short">AU 10·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/f03-320.webp" srcset="assets/faces/f03-176.webp 176w, assets/faces/f03-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU6 · AU12 · AU25</span><span class="t-short">AU 6·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/f32-320.webp" srcset="assets/faces/f32-176.webp 176w, assets/faces/f32-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU25 · AU26</span><span class="t-short">AU 4·25·26</span></span></div>
+      <div class="face"><img src="assets/faces/p28-320.webp" srcset="assets/faces/p28-176.webp 176w, assets/faces/p28-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU17</span><span class="t-short">AU 4·6·17</span></span></div>
+      <div class="face"><img src="assets/faces/f23-320.webp" srcset="assets/faces/f23-176.webp 176w, assets/faces/f23-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU17</span><span class="t-short">AU 4·17</span></span></div>
+      <div class="face"><img src="assets/faces/f28-320.webp" srcset="assets/faces/f28-176.webp 176w, assets/faces/f28-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU17</span><span class="t-short">AU 4·6·17</span></span></div>
+      <div class="face"><img src="assets/faces/f00-320.webp" srcset="assets/faces/f00-176.webp 176w, assets/faces/f00-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU17</span><span class="t-short">AU 4·6·17</span></span></div>
+      <div class="face"><img src="assets/faces/f01-320.webp" srcset="assets/faces/f01-176.webp 176w, assets/faces/f01-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU12</span><span class="t-short">AU 4·6·12</span></span></div>
+      <div class="face"><img src="assets/faces/p02-320.webp" srcset="assets/faces/p02-176.webp 176w, assets/faces/p02-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU25 · AU26</span><span class="t-short">AU 4·25·26</span></span></div>
+      <div class="face"><img src="assets/faces/p25-320.webp" srcset="assets/faces/p25-176.webp 176w, assets/faces/p25-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU2 · AU4</span><span class="t-short">AU 1·2·4</span></span></div>
+      <div class="face"><img src="assets/faces/f30-320.webp" srcset="assets/faces/f30-176.webp 176w, assets/faces/f30-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU14 · AU17 · AU24</span><span class="t-short">AU 14·17·24</span></span></div>
+      <div class="face"><img src="assets/faces/p23-320.webp" srcset="assets/faces/p23-176.webp 176w, assets/faces/p23-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU6 · AU12 · AU25</span><span class="t-short">AU 6·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/p22-320.webp" srcset="assets/faces/p22-176.webp 176w, assets/faces/p22-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU25</span><span class="t-short">AU 4·6·25</span></span></div>
+      <div class="face"><img src="assets/faces/p18-320.webp" srcset="assets/faces/p18-176.webp 176w, assets/faces/p18-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU15 · AU17</span><span class="t-short">AU 1·15·17</span></span></div>
+      <div class="face"><img src="assets/faces/f15-320.webp" srcset="assets/faces/f15-176.webp 176w, assets/faces/f15-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU6 · AU25 · AU26</span><span class="t-short">AU 6·25·26</span></span></div>
+      <div class="face"><img src="assets/faces/p33-320.webp" srcset="assets/faces/p33-176.webp 176w, assets/faces/p33-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU5 · AU25</span><span class="t-short">AU 4·5·25</span></span></div>
+      <div class="face"><img src="assets/faces/f13-320.webp" srcset="assets/faces/f13-176.webp 176w, assets/faces/f13-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU7 · AU15 · AU17</span><span class="t-short">AU 7·15·17</span></span></div>
+      <div class="face"><img src="assets/faces/p09-320.webp" srcset="assets/faces/p09-176.webp 176w, assets/faces/p09-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU2</span><span class="t-short">AU 1·2</span></span></div>
+      <div class="face"><img src="assets/faces/p26-320.webp" srcset="assets/faces/p26-176.webp 176w, assets/faces/p26-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU7 · AU25</span><span class="t-short">AU 4·7·25</span></span></div>
+      <div class="face"><img src="assets/faces/f27-320.webp" srcset="assets/faces/f27-176.webp 176w, assets/faces/f27-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU6 · AU12 · AU25</span><span class="t-short">AU 6·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/p17-320.webp" srcset="assets/faces/p17-176.webp 176w, assets/faces/p17-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU4 · AU12</span><span class="t-short">AU 1·4·12</span></span></div>
+      <div class="face"><img src="assets/faces/f11-320.webp" srcset="assets/faces/f11-176.webp 176w, assets/faces/f11-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU14 · AU17</span><span class="t-short">AU 4·14·17</span></span></div>
+      <div class="face"><img src="assets/faces/p00-320.webp" srcset="assets/faces/p00-176.webp 176w, assets/faces/p00-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4</span><span class="t-short">AU 4</span></span></div>
+      <div class="face"><img src="assets/faces/p19-320.webp" srcset="assets/faces/p19-176.webp 176w, assets/faces/p19-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag is-none">No AU found</span></div>
+      <div class="face"><img src="assets/faces/p15-320.webp" srcset="assets/faces/p15-176.webp 176w, assets/faces/p15-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU10 · AU12 · AU25</span><span class="t-short">AU 10·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/p07-320.webp" srcset="assets/faces/p07-176.webp 176w, assets/faces/p07-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4</span><span class="t-short">AU 4</span></span></div>
+      <div class="face"><img src="assets/faces/f20-320.webp" srcset="assets/faces/f20-176.webp 176w, assets/faces/f20-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU7</span><span class="t-short">AU 4·7</span></span></div>
+      <div class="face"><img src="assets/faces/p11-320.webp" srcset="assets/faces/p11-176.webp 176w, assets/faces/p11-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag is-none">No AU found</span></div>
+      <div class="face"><img src="assets/faces/p35-320.webp" srcset="assets/faces/p35-176.webp 176w, assets/faces/p35-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU6 · AU25</span><span class="t-short">AU 4·6·25</span></span></div>
+      <div class="face"><img src="assets/faces/p05-320.webp" srcset="assets/faces/p05-176.webp 176w, assets/faces/p05-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4</span><span class="t-short">AU 4</span></span></div>
+      <div class="face"><img src="assets/faces/f06-320.webp" srcset="assets/faces/f06-176.webp 176w, assets/faces/f06-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4</span><span class="t-short">AU 4</span></span></div>
+      <div class="face"><img src="assets/faces/f12-320.webp" srcset="assets/faces/f12-176.webp 176w, assets/faces/f12-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU4 · AU7</span><span class="t-short">AU 1·4·7</span></span></div>
+      <div class="face"><img src="assets/faces/p31-320.webp" srcset="assets/faces/p31-176.webp 176w, assets/faces/p31-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU7 · AU17</span><span class="t-short">AU 4·7·17</span></span></div>
+      <div class="face"><img src="assets/faces/f24-320.webp" srcset="assets/faces/f24-176.webp 176w, assets/faces/f24-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU7 · AU12 · AU25</span><span class="t-short">AU 7·12·25</span></span></div>
+      <div class="face"><img src="assets/faces/f19-320.webp" srcset="assets/faces/f19-176.webp 176w, assets/faces/f19-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU15 · AU17</span><span class="t-short">AU 4·15·17</span></span></div>
+      <div class="face"><img src="assets/faces/p21-320.webp" srcset="assets/faces/p21-176.webp 176w, assets/faces/p21-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU2 · AU4</span><span class="t-short">AU 1·2·4</span></span></div>
+      <div class="face"><img src="assets/faces/p10-320.webp" srcset="assets/faces/p10-176.webp 176w, assets/faces/p10-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU1 · AU2 · AU4</span><span class="t-short">AU 1·2·4</span></span></div>
+      <div class="face"><img src="assets/faces/f21-320.webp" srcset="assets/faces/f21-176.webp 176w, assets/faces/f21-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU7 · AU10</span><span class="t-short">AU 4·7·10</span></span></div>
+      <div class="face"><img src="assets/faces/p32-320.webp" srcset="assets/faces/p32-176.webp 176w, assets/faces/p32-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU4 · AU12 · AU17</span><span class="t-short">AU 4·12·17</span></span></div>
+      <div class="face"><img src="assets/faces/p27-320.webp" srcset="assets/faces/p27-176.webp 176w, assets/faces/p27-320.webp 320w" sizes="(max-width: 720px) 24vw, 11vw" width="320" height="320" alt="" decoding="async" loading="lazy"><span class="au-tag"><span class="t-full">AU6 · AU12 · AU25</span><span class="t-short">AU 6·12·25</span></span></div>
+    </div>
+    <!-- face wall: end -->
     <div class="hero-scrim" aria-hidden="true"></div>
 
     <div class="wrap hero-body">
@@ -89,15 +120,14 @@
     <div class="wrap hero-foot">
       <ul class="stat-chips" aria-label="At a glance">
         <li class="stat"><b>128</b> databases reviewed</li>
-        <li class="stat" title="Distinct papers in Literature Galaxy, October 2026"><b>1,600+</b> papers mapped</li>
         <li class="stat"><b>4</b> peer-reviewed papers, 3 as first author</li>
       </ul>
-      <div class="galaxy-note">
-        <p class="gn-title"><a href="#literature-galaxy">Literature Galaxy</a> · October 2026</p>
-        <p>My research library: each point a document, coloured by topic. Real data, drawn in your browser.</p>
-        <div class="gn-row">
-          <span class="still-note" data-still-note hidden>Still, because your device asks for less motion.</span>
-          <button class="toggle" type="button" data-galaxy-toggle aria-label="Pause the galaxy" hidden>
+      <div class="wall-note">
+        <p><b>Real moments, not posed ones.</b> The AU labels are what LibreFace, an open detector, found in each photo; it gets some wrong. <span class="on-hover">Point at a face to see its AUs.</span><span class="on-touch">Tap a face to see its AUs.</span></p>
+        <div class="wn-row">
+          <span>Model labels, not feelings · <a href="credits.html">Photo credits</a></span>
+          <span class="still-note" data-wall-still hidden>Still, because your device asks for less motion.</span>
+          <button class="toggle" type="button" data-wall-toggle aria-label="Pause the face wall" hidden>
             <svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg>
             <svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg>
             <span data-label>Pause</span>
@@ -218,13 +248,24 @@
             <p class="row-promise">See a research library as a galaxy of papers, and where they agree and disagree.</p>
           </div>
           <div class="row-media">
-            <figure>
-              <div class="shot">
-                <picture><source type="image/webp" srcset="media/literature-galaxy/answer.webp"><img src="media/literature-galaxy/answer.jpg" width="1280" height="900" loading="lazy" decoding="async"
-                     alt="An answer card from the live preview. Under the question “Do facial expressions reliably reveal what a person feels?”, the statement “Facial movements cannot be read as signs of inner emotional states without context” is listed with the 19 papers that support it. The first four are named, each with its year and the kind of evidence behind it (argument or own data); a line says ten more are on the map and five more, without a checked DOI, are not named; two buttons light the papers on the galaxy or open the statement on the map."></picture>
+            <figure data-galaxy-host>
+              <div class="panel-galaxy">
+                <span class="panel-tag"><i aria-hidden="true"></i>Real data · drag to turn</span>
+                <div class="galaxy" data-galaxy
+                     data-src="assets/galaxy/galaxy-data.json"
+                     data-poster="assets/galaxy/poster.jpg"
+                     data-mode="panel"
+                     data-labels="none"
+                     data-interactive="true"
+                     data-align="center"
+                     data-avoid=".panel-galaxy .panel-tag"
+                     role="img"
+                     aria-label="Literature Galaxy: the papers in my research library, coloured by topic group, with fine lines joining papers whose texts read alike."
+                     data-canvas-label="Literature Galaxy: the papers in my research library, coloured by topic group, with fine lines joining papers whose texts read alike."></div>
               </div>
               <figcaption class="cap-row">
-                <span class="cap">Part of an answer in the live preview: a statement the question touches, and the papers that support it, each with its year and the kind of evidence it offers. A paper is named only when its DOI has been checked. The map at the top of this page is the same library.</span>
+                <span class="cap">My research library: each point is a document, placed near documents whose full text covers similar ground and coloured by topic group. Drag to turn it. Drawn in your browser from the library as of October 2026.<span class="still-note" data-still-note hidden> Still, because your device asks for less motion.</span></span>
+                <button class="toggle" type="button" data-galaxy-toggle aria-label="Pause the galaxy" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
               </figcaption>
             </figure>
           </div>
