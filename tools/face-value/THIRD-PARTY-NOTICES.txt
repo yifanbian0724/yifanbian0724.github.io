@@ -1,0 +1,73 @@
+Third-party notices for this preview
+====================================
+
+The tool's own code and knowledge base: no licence has been chosen yet.
+Please ask the author before reusing or redistributing them.
+
+
+1. The 3D head: ICT-FaceKit (ICT Face Model Light)
+   USC Institute for Creative Technologies, https://github.com/ICT-VGL/ICT-FaceKit
+   Used for the mesh, its expression shapes and baked shading, converted for the web:
+   ict_web.json, ict_web_bin.txt, ict_ao_bin.txt.
+   Model paper: Li, R., Bladin, K., Zhao, Y., Chinara, C., Ingraham, O., Xiang, P., Ren, X.,
+   Prasad, P., Kishore, B., Xing, J., & Li, H. (2020). Learning formation of physically-based
+   face attributes. CVPR 2020.
+
+   MIT License
+
+   Copyright (c) 2020 USC Institute for Creative Technologies
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+
+2. three.js r160 (MIT licence, copyright the three.js authors), https://threejs.org
+   Loaded at run time from https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js;
+   not redistributed with these files.
+
+
+3. Fonts (fonts/*.woff2): Source Serif 4 and Source Code Pro (Adobe), Archivo (The Archivo
+   Project Authors). SIL Open Font License 1.1; copyright notices and licence text in
+   fonts/OFL.txt.
+
+
+4. Study data (secondary.json, sec_wsefep.json). No photographs or video are included.
+
+   - Olszanowski, M., Pochwatko, G., Kuklinski, K., Scibor-Rylski, M., Lewinski, P., & Ohme, R. K.
+     (2015). Warsaw set of emotional facial expression pictures: A validation study of facial
+     display photographs. Frontiers in Psychology, 5, 1516. https://doi.org/10.3389/fpsyg.2014.01516
+     Licence: Creative Commons Attribution (CC BY), as stated on the article.
+     Used: per-photograph action-unit codes, intensities and judge ratings from the article's
+     supplementary appendix (copy taken from the public repository of Stöckli et al., 2018).
+     Changes: converted to JSON; the displayers' initials replaced with numbered codes (D01 to D30).
+
+   - Kunz, M., Peter, J., Huster, S., & Lautenbacher, S. (2013). Pain and disgust: The facial
+     signaling of two aversive bodily experiences. PLoS ONE, 8(12), e83277.
+     https://doi.org/10.1371/journal.pone.0083277
+     Licence: CC BY 4.0. Used: Table 1 (action-unit frequencies by condition), as printed.
+
+   - Scherer, K. R., Ellgring, H., Dieckmann, A., Unfried, M., & Mortillaro, M. (2019). Dynamic
+     facial expression of emotion and observer inference. Frontiers in Psychology, 10, 508.
+     https://doi.org/10.3389/fpsyg.2019.00508
+     Licence: Creative Commons Attribution (CC BY), as stated on the article.
+     Used: Tables 2A and 2B (action-unit frequencies), as printed.
+
+
+5. Findings, estimates and quotations (kb.json) summarize the works cited with them, each
+   linked to its source. Quotations are kept to a sentence and cited. The original works
+   remain under their own copyright.

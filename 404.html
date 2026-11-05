@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Yifan Bian</title>
+<meta name="description" content="This page could not be found. Start from Yifan Bian's home page, research, tools or about page.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0d14">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap"></noscript>
+<style>
+  /* The basics, in case this page is shown at an address where style.css cannot be found. */
+  html, body { background: #0b0d14; color: #e7eaf3; }
+  body { margin: 0; font: 400 16.5px/1.65 "Sora", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: #6ea8ff; }
+</style>
+<script>
+  /* GitHub Pages shows this page for every missing address, at that address. One folder deep or more, relative links
+     would point to the wrong place, so the stylesheet, the icon and the site script are not linked statically: this
+     finds the site's root (the nearest folder at or above this address that holds favicon.svg), then loads them from
+     there and points the page's links there too. Without fetch (or from a file), the page's own folder is used. */
+  (function () {
+    var here = location.pathname.replace(/[^\/]*$/, "");
+    var folders = here.split("/").slice(1, -1);
+    var roots = [];
+    for (var i = folders.length; i >= 0; i--) roots.push("/" + folders.slice(0, i).join("/") + (i ? "/" : ""));
+    var done = false;
+    function load(root) {
+      if (done) return;
+      done = true;
+      function fix() {
+        var head = document.head;
+        var css = document.createElement("link"); css.rel = "stylesheet"; css.href = root + "style.css"; head.appendChild(css);
+        var ico = document.createElement("link"); ico.rel = "icon"; ico.type = "image/svg+xml"; ico.href = root + "favicon.svg"; head.appendChild(ico);
+        if (root) {
+          Array.prototype.forEach.call(document.querySelectorAll("a[href]"), function (el) {
+            var h = el.getAttribute("href");
+            if (!h || /^([a-z]+:|#|\/)/i.test(h)) return;
+            el.setAttribute("href", root + h);
+          });
+        }
+        var s = document.createElement("script"); s.src = root + "script.js"; s.defer = true; document.body.appendChild(s);
+      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fix); else fix();
+    }
+    if (!window.fetch || location.protocol === "file:") { load(""); return; }
+    (function next(k) {
+      if (k >= roots.length) { load(""); return; }
+      fetch(roots[k] + "favicon.svg", { method: "HEAD" }).then(function (r) {
+        if (r.ok) load(roots[k] === here ? "" : roots[k]); else next(k + 1);
+      }, function () { next(k + 1); });
+    })(0);
+  })();
+</script>
+</head>
+<body class="page-404">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="wrap nav">
+    <a class="wordmark" href="index.html">Yifan Bian</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="research.html">Research</a>
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="btn btn--ghost btn--sm nav-cta" href="about.html#contact" data-site-show="email" hidden>Get in touch</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="notfound" aria-labelledby="page-title">
+    <div class="wrap">
+      <p class="nf-code" aria-hidden="true">4<span>0</span>4</p>
+      <h1 class="page-title" id="page-title">This page isn’t here</h1>
+      <p class="lead">The address may have changed, or there may be a typo in it. One of these pages is a good place to start.</p>
+      <ul class="nf-links">
+        <li><a href="index.html">Home<span>Who I am and what I work on</span></a></li>
+        <li><a href="research.html">Research<span>Four papers, in plain words</span></a></li>
+        <li><a href="tools.html">Tools<span>One published, four in development</span></a></li>
+        <li><a href="about.html">About<span>Story, skills and contact</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <p class="who">Yifan Bian · PhD researcher, Experimental Psychology, University College London</p>
+    <ul class="foot-links">
+      <li data-site-show="email" hidden>Email <a href="about.html#contact" data-site-href="email" data-site-text="email"></a></li>
+      <li><a href="https://scholar.google.com/citations?user=1NM05PoAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li data-site-show="linkedin" hidden><a data-site-href="linkedin">LinkedIn</a></li>
+      <li data-site-show="github" hidden><a data-site-href="github">GitHub</a></li>
+    </ul>
+    <p>Designed and built with Claude Code. Set in Sora and DM Mono.</p>
+    <p>© 2026 Yifan Bian</p>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" data-toast-el></div>
+
+</body>
+</html>
