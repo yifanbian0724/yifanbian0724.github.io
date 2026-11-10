@@ -378,6 +378,26 @@
     auto.forEach(function (p) { io.observe(p.el.closest("[data-view]") || p.el); (p.el.closest("[data-view]") || p.el).__player = p; });
   }
   doc.addEventListener("visibilitychange", choose);
+
+  /* ---------------------------------------------------------------- load ahead
+     A recording starts downloading about one screen before its player comes into view, so it can start at once when
+     the reader gets there. Only after the page itself has loaded, and not with reduced motion or Save-Data. */
+  function loadAhead() {
+    if (!("IntersectionObserver" in window) || !auto.length) return;
+    if (navigator.connection && navigator.connection.saveData) return;
+    var ahead = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting || reduced()) return;
+        var p = e.target.__player;
+        var it = p && p.items[p.cur];
+        if (it && it.v) load(it.v);
+        ahead.unobserve(e.target);
+      });
+    }, { rootMargin: "100% 0px 100% 0px" });
+    auto.forEach(function (p) { ahead.observe(p.el.closest("[data-view]") || p.el); });
+  }
+  if (doc.readyState === "complete") setTimeout(loadAhead, 300);
+  else window.addEventListener("load", function () { setTimeout(loadAhead, 300); });
   onChange(mqReduce, function () { players.forEach(function (p) { if (p.running && !p.user) p.pause(); }); choose(); });
   window.V5 = { players: players, choose: choose };
 

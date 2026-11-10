@@ -505,6 +505,26 @@ var SITE = {
       items.forEach(function (it) { io.observe(it.target); });
     }
     doc.addEventListener("visibilitychange", pick);
+    // Load ahead: a recording starts downloading about one screen before it comes into view, so it can start at once
+    // when the reader gets there. Only after the page itself has loaded, and not with reduced motion or Save-Data.
+    function loadAhead() {
+      if (!("IntersectionObserver" in window) || reduced()) return;
+      if (navigator.connection && navigator.connection.saveData) return;
+      var ahead = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting || reduced()) return;
+          var it = find(e.target);
+          if (!it || it.broken) return;
+          it.v.preload = "auto";
+          if (it.box) ensureSrc(it);
+          else if (it.v.readyState === 0 && it.v.networkState !== 2) it.v.load();
+          ahead.unobserve(e.target);
+        });
+      }, { rootMargin: "100% 0px 100% 0px" });
+      items.forEach(function (it) { ahead.observe(it.target); });
+    }
+    if (doc.readyState === "complete") setTimeout(loadAhead, 300);
+    else window.addEventListener("load", function () { setTimeout(loadAhead, 300); });
     onChange(mqReduce, function () { if (reduced()) items.forEach(function (it) { if (!it.user && !it.v.paused) it.v.pause(); }); pick(); });
     // crossing 640 px swaps a recording to the other cut
     onChange(mqCut, function () {
