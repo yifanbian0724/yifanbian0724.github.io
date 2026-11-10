@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- The browser enforces this: the page may load code only from itself and jsDelivr, and may fetch only from itself
+     and jsDelivr (fonts from Google Fonts). Nothing can be sent anywhere else. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; connect-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Face Mirror</title>
+<meta name="description" content="Preview, in development. Move your face and a synthetic clay head copies it; see the facial action units you make and what published studies report for that combination. Runs entirely in your browser: nothing leaves your device.">
+<meta name="robots" content="noindex">
+<meta name="author" content="Yifan Bian">
+<!-- Where Face Value's preview and the site's tools page are, relative to this page (on the site: tools/face-mirror/). -->
+<meta name="face-value-url" content="../face-value/">
+<meta name="tools-url" content="../../tools.html#face-value">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23141824'/%3E%3Cpath d='M10 19c3.2 3.4 8.8 3.4 12 0' fill='none' stroke='%236ea8ff' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='11.5' cy='12.5' r='2' fill='%23e7eaf3'/%3E%3Ccircle cx='20.5' cy='12.5' r='2' fill='%23e7eaf3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="face-mirror.css">
+<link rel="modulepreload" href="app.js">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the demo</a>
+<div class="pv-note" role="note"><div class="wrap">
+  <span class="pv-tag"><i aria-hidden="true"></i>Preview, in development</span>
+  <span class="pv-more">Snapshot of November 2026</span>
+  <a class="pv-back" id="tools-link" href="../../tools.html">&larr; All tools</a>
+</div></div>
+
+<header class="intro wrap">
+  <p class="eyebrow mono">Face Mirror</p>
+  <h1>Make a face. See the movements, and what studies say about them.</h1>
+  <p class="lede">A synthetic clay head copies the movements of your face, live. Face Mirror names each one as an action unit of the Facial Action Coding System (FACS), the standard way to describe facial movements. For the combination you hold, it shows what published studies in <a id="fv-link" href="../face-value/">Face Value</a>'s evidence base report: when people felt a state, when they posed one, and what observers saw. <strong>It never says what you feel.</strong></p>
+  <div class="hero-row">
+    <button type="button" class="btn primary" id="cam-btn">Use my camera</button>
+    <button type="button" class="btn" id="sample-btn" aria-pressed="false">Try sample expressions</button>
+    <p class="hero-privacy mono"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5.2a3.5 3.5 0 0 1 7 0V7" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="7" width="10" height="7" rx="1.6" fill="currentColor"/></svg>Runs in your browser. Nothing is recorded, stored or sent.</p>
+  </div>
+</header>
+
+<main id="main" class="wrap demo">
+  <section class="stage-col" aria-label="The clay head">
+    <div class="stage" id="stage">
+      <canvas id="head" role="img" aria-label="A synthetic clay head at rest"></canvas>
+      <div class="stage-wait" id="stage-wait">Loading the head…</div>
+      <div class="stage-top">
+        <span class="chip mono" id="mode-chip" aria-live="polite">Starting…</span>
+      </div>
+      <figure class="selfview" id="selfview" hidden>
+        <video id="video" playsinline muted></video>
+        <figcaption class="mono">You (only on this screen)</figcaption>
+      </figure>
+      <p class="privacy-pill mono"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5.2a3.5 3.5 0 0 1 7 0V7" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="7" width="10" height="7" rx="1.6" fill="currentColor"/></svg>Nothing leaves your device</p>
+    </div>
+
+    <div class="controls" id="controls">
+      <div class="row cam-only" hidden>
+        <button type="button" class="btn small" id="rest-btn">Set my resting face</button>
+        <label class="toggle"><input type="checkbox" id="follow" checked> Follow head turns</label>
+        <label class="toggle"><input type="checkbox" id="show-video" checked> Show my video</label>
+      </div>
+      <div class="samples sample-only" hidden>
+        <div class="sample-bar">
+          <button type="button" class="btn small" id="play-btn">Pause</button>
+          <button type="button" class="btn small" id="next-btn">Show next</button>
+          <span class="mono muted" id="sample-pos"></span>
+        </div>
+        <ol class="sample-list" id="sample-list"></ol>
+      </div>
+      <p class="status" id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="panel-col">
+    <section class="card readout" aria-labelledby="ro-h">
+      <div class="card-head">
+        <h2 id="ro-h">Facial movements</h2>
+        <span class="mono muted small">FACS action units, estimated</span>
+      </div>
+      <div class="ro-active" id="ro-active" aria-live="off"></div>
+      <div class="ro-grid" id="ro-grid"></div>
+      <details class="raw" id="raw">
+        <summary>The tracker's raw scores, before resting values are taken off</summary>
+        <div class="raw-grid mono" id="raw-grid"></div>
+      </details>
+    </section>
+
+    <section class="card evidence" aria-labelledby="ev-h">
+      <div class="card-head">
+        <h2 id="ev-h">What studies report for this combination</h2>
+      </div>
+      <div class="ev-combo" id="ev-combo"></div>
+      <p class="sr" id="ev-say" aria-live="polite"></p>
+      <div class="ev-rows" id="ev-rows"></div>
+      <p class="ev-legend" aria-hidden="true"><span><span class="sq"><i></i></span>a study sample that found it</span><span><span class="sq"><i class="x"></i></span>one that looked and did not</span><span><span class="sq"><i class="r"></i><i class="r off"></i></span>tenths of a review's studies</span></p>
+      <p class="ev-note small">About other people in published studies, not about you. The same actions occur with many states, and most people in a state do not show its supposed face.</p>
+      <div class="ev-foot small">
+        <a class="ev-link" id="ev-link" href="../face-value/">Open in Face Value</a>
+        <span class="muted mono" id="ev-version"></span>
+      </div>
+    </section>
+  </section>
+</main>
+
+<section class="wrap about" id="how" aria-labelledby="how-h">
+  <h2 id="how-h">How it works</h2>
+  <ol class="steps">
+    <li><b>Tracking, on your device.</b> A face-tracking model scores 52 small facial movements about 30 times a second, inside this browser tab. It learns your usual resting face as you go, or you can set it with "Set my resting face".<span class="meta mono">MediaPipe Face Landmarker · WebAssembly, WebGL · ARKit-style blendshapes</span></li>
+    <li><b>Mirroring.</b> The scores move the matching expression shapes of a synthetic 3D head, turned like a reflection. No one's face is shown.<span class="meta mono">ICT-FaceKit · three.js</span></li>
+    <li><b>Naming movements.</b> A fixed table turns the scores into estimated FACS action units. A movement counts once it stays above its threshold for a moment.<span class="meta mono">35 action units · first estimates, not FACS coding</span></li>
+    <li><b>Reading the evidence.</b> When a combination holds for most of a second, the panel shows Face Value's evidence for it, graded by the independent study samples behind it. Blinks, gaze and head turns are shown but not read.<span class="meta mono">Face Value evidence base, October 2026</span></li>
+  </ol>
+  <div class="limits">
+    <h3>Limits</h3>
+    <ul>
+      <li>Estimates, not FACS coding by trained human coders. The tracker was built to animate avatars. Some movements have no score at all (for example AU23, lip tightener), and others register weakly or as their neighbours (cheek raising as lid tightening, nose wrinkling as upper-lip raising).</li>
+      <li>Lighting, glasses, beards, head turns and the camera angle all change the scores.</li>
+      <li>The evidence is about combinations of actions in groups of people under study conditions. It cannot say what one person feels at one moment.</li>
+    </ul>
+  </div>
+  <div class="privacy">
+    <h3>Privacy</h3>
+    <p>The camera starts only after you agree. Its image is processed in this browser tab and is never recorded, stored or sent, and neither is anything measured from it. The page sets no cookies and has no analytics; its security policy lets it load code only from this site and jsDelivr. Stopping the camera, or closing the tab, ends everything.</p>
+  </div>
+</section>
+
+<footer class="wrap credits" id="credits" aria-labelledby="cr-h">
+  <h2 id="cr-h">Credits and licences</h2>
+  <ul>
+    <li><b>3D head:</b> ICT-FaceKit (ICT Face Model Light), USC Institute for Creative Technologies, <a href="https://github.com/ICT-VGL/ICT-FaceKit">MIT licence</a>. Li, R., et al. (2020). Learning formation of physically-based face attributes. CVPR 2020. Clay look and renderer from Face Value.</li>
+    <li><b>Face tracking:</b> MediaPipe Face Landmarker by Google: <span class="mono">@mediapipe/tasks-vision</span> 0.10.21 (loaded from jsDelivr) and the face_landmarker model (served with this page), <a href="https://github.com/google-ai-edge/mediapipe/blob/master/LICENSE">Apache License 2.0</a>. Model cards: <a href="https://storage.googleapis.com/mediapipe-assets/Model%20Card%20MediaPipe%20Face%20Mesh%20V2.pdf">Face Mesh V2</a>, <a href="https://storage.googleapis.com/mediapipe-assets/Model%20Card%20Blendshape%20V2.pdf">Blendshape V2</a>.</li>
+    <li><b>Rendering:</b> <a href="https://threejs.org">three.js</a> r160, MIT licence (loaded from jsDelivr).</li>
+    <li><b>Evidence:</b> Face Value's evidence base (snapshot <span id="cr-version">October 2026</span>), which summarises published studies and credits each one; open a combination in Face Value to see the studies. Action unit names follow the FACS manual (Ekman, Friesen &amp; Hager, 2002).</li>
+    <li><b>Fonts:</b> Sora and DM Mono, SIL Open Font License 1.1, via Google Fonts.</li>
+    <li><b>Face Mirror</b> by Yifan Bian, in development. The table that turns the tracker's scores into action units is its own first estimate.</li>
+  </ul>
+</footer>
+
+<dialog class="consent" id="consent" aria-labelledby="consent-h">
+  <h2 id="consent-h">Use your camera?</h2>
+  <ul>
+    <li>Your camera image is analysed only inside this browser tab.</li>
+    <li><b>Nothing is recorded, stored or sent</b>: no images, no measurements, no analytics.</li>
+    <li>Face Mirror shows the facial movements it sees and what studies report about them. It never says what you feel.</li>
+    <li>The face tracker (about 14 MB, by Google) downloads once and runs on your device.</li>
+    <li>Stop at any time with "Stop camera", or by closing the tab.</li>
+  </ul>
+  <div class="consent-actions">
+    <button type="button" class="btn" id="consent-no">Keep the camera off</button>
+    <button type="button" class="btn primary" id="consent-yes">Start camera</button>
+  </div>
+</dialog>
+
+<noscript><p class="wrap status">Face Mirror needs JavaScript and WebGL.</p></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

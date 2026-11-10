@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research radar · Yifan Bian</title>
+<meta name="description" content="Preview, in development: new research on facial expression and emotion, picked by Yifan Bian, with a one-line summary of each paper and where it sits in a galaxy of the research library.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0d14">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Research radar · Yifan Bian" href="feed.xml">
+<!-- The galaxy's data and the list start downloading at once: the same URLs as data-src, data-new-src and radar.js. -->
+<link rel="preload" href="../../assets/galaxy/galaxy-data.json" as="fetch" crossorigin>
+<link rel="preload" href="data/radar-stars.json" as="fetch" crossorigin>
+<link rel="preload" href="data/radar.json" as="fetch" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300..700&display=swap"></noscript>
+<link rel="stylesheet" href="radar.css">
+<noscript><style>.sky-frame > .galaxy { background: url("../../assets/galaxy/poster.jpg") center / cover no-repeat; }</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="pv-note" role="note" aria-label="About this preview">
+  <div class="wrap">
+    <span class="pv-tag"><i aria-hidden="true"></i>Preview · in development</span>
+    <span class="pv-more">Snapshot of November 2026. The list and the galaxy may still change.</span>
+    <a class="pv-back" href="../../tools.html#literature-galaxy">&larr; All tools</a>
+  </div>
+</div>
+
+<!-- Site header: as on the site's own pages (Tools is the section this page belongs to). -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="../../index.html">Yifan Bian</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="../../research.html">Research</a>
+      <a href="../../tools.html" class="is-section">Tools</a>
+      <a href="../../about.html">About</a>
+    </nav>
+    <a class="btn btn--ghost btn--sm nav-cta" href="../../about.html#contact">Get in touch</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- TOOL: research-radar -->
+  <section class="intro wrap" aria-labelledby="page-title">
+    <nav aria-label="Breadcrumb"><p class="crumb"><a href="../../tools.html">Tools</a> / <span aria-current="page">Research radar</span></p></nav>
+    <p class="kicker"><span class="eyebrow">Research radar</span><span class="chip chip--dev">In development</span></p>
+    <h1 id="page-title">New research on facial expression and emotion</h1>
+    <p class="lead">New papers on how faces show emotion, how people read them and how machines label them, from literature searches I run with an AI assistant. Only the papers I mark as relevant make this list, each with a one-line summary and a link to the paper.</p>
+    <p class="meta" data-status>Loading the latest papers…</p>
+    <div class="btn-row">
+      <a class="btn" href="#digest">Read the latest papers</a>
+      <a class="btn btn--ghost" href="feed.xml" type="application/rss+xml">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="12.5" r="1.6" fill="currentColor"/><path d="M2 7.2a6.8 6.8 0 0 1 6.8 6.8M2 2.6A11.4 11.4 0 0 1 13.4 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Follow by RSS
+      </a>
+    </div>
+  </section>
+
+  <div class="layout wrap">
+    <!-- The galaxy: my research library, with the radar's papers as ringed stars. Sticky beside the list on wide screens. -->
+    <aside class="sky" aria-labelledby="sky-title">
+      <div class="sky-card">
+        <div class="sky-head">
+          <h2 id="sky-title" class="sky-title">Where they sit in my library</h2>
+          <p class="sky-sub">Each point is a document in my research library, coloured by topic group. Ringed stars are papers from the radar.</p>
+        </div>
+        <div class="sky-frame">
+          <div class="galaxy" data-galaxy
+               data-src="../../assets/galaxy/galaxy-data.json"
+               data-new-src="data/radar-stars.json"
+               data-poster="../../assets/galaxy/poster.jpg"
+               data-poster-narrow="../../assets/galaxy/poster-narrow.jpg"
+               data-mode="panel"
+               data-labels="regions"
+               data-interactive="true"
+               data-align="center"
+               role="img"
+               aria-label="Literature Galaxy: the documents in my research library, coloured by topic group, with fine lines joining documents whose texts read alike."
+               data-canvas-label="Literature Galaxy: the documents in my research library, coloured by topic group, with fine lines joining documents whose texts read alike."></div>
+        </div>
+        <div class="sky-foot">
+          <ul class="legend" aria-label="Key">
+            <li><span class="key key--new" aria-hidden="true"></span>Paper from the radar</li>
+            <li><span class="key key--lib" aria-hidden="true"></span>Document in my library</li>
+            <li><span class="key key--line" aria-hidden="true"></span>The library documents it was placed among</li>
+          </ul>
+          <div class="sky-ctrl">
+            <button class="toggle" type="button" data-pause aria-label="Pause the galaxy" hidden><svg class="ico ico-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.6" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/><rect x="6.1" y="1" width="2.3" height="8" rx=".6" fill="currentColor"/></svg><svg class="ico ico-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.3 1.1v7.8L8.9 5z" fill="currentColor"/></svg><span data-label>Pause</span></button>
+            <p class="still-note" data-still hidden>Still, because your device asks for less motion.</p>
+          </div>
+        </div>
+        <p class="sky-pick" data-pick aria-live="polite">Drag to turn it. Point at a ringed star, or use “Show in galaxy” beside a paper.</p>
+        <p class="sky-how"><a class="arrow-link" href="#placement" data-open-method>How the new papers are placed</a></p>
+      </div>
+    </aside>
+
+    <section class="digest" id="digest" aria-labelledby="digest-title" tabindex="-1">
+      <h2 id="digest-title" class="sr-only">Papers by month</h2>
+      <nav class="months-nav" data-months-nav aria-label="Months" hidden></nav>
+      <div data-months aria-busy="true"></div>
+      <noscript>
+        <p class="notice">This list is drawn with JavaScript. The same papers are in the <a href="feed.xml">RSS feed</a>.</p>
+      </noscript>
+    </section>
+  </div>
+
+  <section class="how wrap" aria-labelledby="how-title">
+    <h2 id="how-title" class="how-title">How this list is made</h2>
+    <div class="how-grid">
+      <p>An AI assistant (Claude) runs literature searches for me across PubMed, arXiv and journal websites, looking for new work on facial expression and emotion and for useful methods from nearby fields. I mark each candidate as relevant, maybe or not relevant.</p>
+      <p><span data-rule>Only the papers I mark relevant are listed here and in the feed.</span> Candidates I have not judged yet are counted under each month but not named. Topics use the names of the topic groups in my library’s galaxy.</p>
+      <p>The one-line summaries are written for this page with AI, from each paper’s abstract. They are not the authors’ words, and they leave out most of the detail, so read the paper itself before citing it.</p>
+    </div>
+    <details class="method" id="placement">
+      <summary>How the new papers are placed in the galaxy</summary>
+      <div class="method-body">
+        <p>The galaxy is a map of my research library: documents sit near documents whose full text covers similar ground. A paper that is not in my library yet has no full text in that map, so it cannot get an exact place, and its star is an approximation.</p>
+        <p>Each new paper is compared, by its title and abstract, with every library document’s title and most distinctive terms. It is put at the centre of its closest matches, weighted by how close they are, inside the topic group most of them share; the faint lines lead to those matches. Its topic on this page comes from the same step. A paper that is already in my library is ringed at its own place instead.</p>
+        <p data-test hidden></p>
+        <p class="meta" data-method-meta></p>
+      </div>
+    </details>
+  </section>
+  <!-- /TOOL -->
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <p class="who">Yifan Bian · PhD researcher, Experimental Psychology, University College London</p>
+    <ul class="foot-links">
+      <li><a href="https://scholar.google.com/citations?user=1NM05PoAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="feed.xml">Research radar feed (RSS)</a></li>
+    </ul>
+    <p>Designed and built with Claude Code. Set in Sora and DM Mono.</p>
+    <p>© 2026 Yifan Bian</p>
+  </div>
+</footer>
+
+<script src="galaxy-hero-radar.js" defer></script>
+<script src="radar.js" defer></script>
+</body>
+</html>

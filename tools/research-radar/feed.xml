@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Research radar · Yifan Bian</title>
+    <link>https://yifanbian0724.github.io/tools/research-radar/</link>
+    <description>New research on facial expression and emotion, picked by Yifan Bian, with a one-line summary of each paper.</description>
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 06 Nov 2026 00:56:04 +0000</lastBuildDate>
+    <atom:link href="https://yifanbian0724.github.io/tools/research-radar/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Spatiotemporal dynamics and substates underlie emotional signalling in facial movements</title>
+      <link>https://doi.org/10.1038/s41598-026-46726-0</link>
+      <guid isPermaLink="true">https://doi.org/10.1038/s41598-026-46726-0</guid>
+      <pubDate>Sun, 06 Sep 2026 09:00:00 +0000</pubDate>
+      <dc:creator>Cuve, Sowden-Carvalho &amp; Cook</dc:creator>
+      <category>How people read faces</category>
+      <description>When people are asked to show happiness, sadness or anger, alone or while speaking, their facial movements fall into a few patterns over time; short transition phases carry the emotion, and the patterns predict how observers label it. Cuve, Sowden-Carvalho &amp; Cook (2026), Scientific Reports. Topic: How people read faces.</description>
+    </item>
+    <item>
+      <title>Text-guided weakly supervised framework for dynamic facial expression recognition</title>
+      <link>https://doi.org/10.1016/j.patcog.2025.112910</link>
+      <guid isPermaLink="true">https://doi.org/10.1016/j.patcog.2025.112910</guid>
+      <pubDate>Sun, 06 Sep 2026 09:00:00 +0000</pubDate>
+      <dc:creator>Jung, Kong &amp; Lee</dc:creator>
+      <category>Automated facial analysis</category>
+      <description>A computer-vision method for labelling facial expressions in video: written descriptions of each emotion help it find the moments that matter when a whole clip carries only one label. Jung, Kong &amp; Lee (2026), Pattern Recognition. Topic: Automated facial analysis.</description>
+    </item>
+    <item>
+      <title>Motion and intensity shape accuracy and confusion patterns in emotion recognition</title>
+      <link>https://doi.org/10.1080/02699931.2026.2693720</link>
+      <guid isPermaLink="true">https://doi.org/10.1080/02699931.2026.2693720</guid>
+      <pubDate>Sun, 06 Sep 2026 09:00:00 +0000</pubDate>
+      <dc:creator>Favelle, Karakale &amp; Menzies</dc:creator>
+      <category>How people read faces</category>
+      <description>Watching an expression unfold on video helps people recognise joy, surprise and anger, especially when it is faint, but still images work better for disgust, fear and sadness, and movement makes fear easier to mistake for surprise. Favelle, Karakale &amp; Menzies (2026), Cognition and Emotion. Topic: How people read faces.</description>
+    </item>
+  </channel>
+</rss>

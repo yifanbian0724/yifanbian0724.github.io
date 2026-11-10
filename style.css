@@ -197,6 +197,13 @@ table { border-collapse: collapse; }
 /* a face's tag fits its tile: the short form ("AU 6·12·25") on smaller tiles, and smaller type on the smallest */
 @container (max-width: 150px) { .au-tag .t-full { display: none; } .au-tag .t-short { display: inline; } }
 @container (max-width: 100px) { .facewall .au-tag { left: 5px; bottom: 5px; padding: 4px 5px; font-size: 9px; letter-spacing: .02em; } }
+/* The wall drifts (script.js): each photo is placed on its own and wraps round out of sight; photos waiting for a place
+   are hidden. The wall fades in, so the still grid never shows before the drift takes over. */
+.facewall { animation: facewall-in 1.2s cubic-bezier(.6, 0, .4, 1) both; }
+@keyframes facewall-in { from { opacity: 0; } }
+.facewall.is-drift { display: block; }
+.facewall.is-drift .face { position: absolute; left: 0; top: 0; will-change: translate; }
+.facewall.is-drift .face.is-queued { visibility: hidden; }
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
@@ -620,6 +627,7 @@ table { border-collapse: collapse; }
 
 .sd-lead { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px clamp(32px, 5vw, 72px); align-items: start; }
 .sd-lead .sticky-media { position: sticky; top: calc(var(--nav-h) + 76px); }
+.sd-lead .sd-media { grid-column: 1 / -1; }   /* the session across the page (10 Nov); nothing here stays pinned */
 .sd-lead .stage { padding: clamp(16px, 2.2vw, 28px); }
 .sd-lead .tool-detail { margin-top: 0; }
 .sd-lead .detail-row { grid-template-columns: minmax(0, 1fr); padding: 28px 0; }
@@ -951,6 +959,7 @@ table { border-collapse: collapse; }
   .hero { min-height: 0; }
   .facewall { inset: -24px -30px auto -30px; height: 300px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .facewall .face:nth-child(n + 16) { display: none; }
+  .facewall.is-drift .face:nth-child(n + 16) { display: block; }
   .hero-scrim { background: linear-gradient(180deg, rgba(11, 13, 20, .4) 0px, rgba(11, 13, 20, 0) 70px, rgba(11, 13, 20, 0) 150px, rgba(11, 13, 20, .94) 228px, var(--bg) 250px); }
   .hero-body { flex: none; align-items: flex-start; }
   .hero-copy { padding-top: 186px; padding-bottom: 0; }
@@ -1052,5 +1061,6 @@ table { border-collapse: collapse; }
 .credit-ol li::marker { font: 400 11.5px var(--mono); color: var(--faint); }
 
 @media (prefers-reduced-motion: reduce) {
+  .facewall { animation: none; }
   .facewall .face, .facewall .au-tag { transition: none; }
 }

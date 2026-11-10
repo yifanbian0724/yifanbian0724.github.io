@@ -1,0 +1,124 @@
+{
+  "v": 1,
+  "built": "2026-11-06",
+  "rule": {
+    "include": [
+      "relevant"
+    ],
+    "text": "Only papers Yifan marked Relevant are listed."
+  },
+  "latest": "2026-09",
+  "placement": {
+    "basis": "full-text key terms",
+    "test": {
+      "date": "2026-10-31",
+      "basis": "full-text key terms",
+      "papers": 300,
+      "sameTopic": 0.707,
+      "sameTopicTitleOnly": 0.593,
+      "sameTopicByChance": 0.073,
+      "withinTenNearest": 0.53,
+      "medianError": 44.4,
+      "medianTenthNeighbour": 50.2,
+      "medianRandomPair": 330.5,
+      "looseBelow": 0.113,
+      "about": "Each tested paper was placed from its title and about 220 words from the start of its abstract, with the paper itself and any second copy of it removed from the library first. sameTopic: share placed in the topic group the map gives it. withinTenNearest: share that landed no further from its true position than its own 10th nearest neighbour. Distances are in the galaxy's units. looseBelow: a quarter of tested papers had a best similarity below this; new papers below it are marked as loosely placed."
+    },
+    "about": "Each new paper sits at the similarity-weighted centre of the library items its title and abstract are most like, inside the topic group most of them share."
+  },
+  "galaxy": {
+    "items": 1838,
+    "built": "2026-10-30"
+  },
+  "months": [
+    {
+      "id": "2026-09",
+      "label": "September 2026",
+      "updated": "2026-09-06",
+      "searches": 2,
+      "candidates": 16,
+      "judged": 8,
+      "listed": 3,
+      "papers": [
+        {
+          "id": "10.1038/s41598-026-46726-0",
+          "anchor": "p-10-1038-s41598-026-46726-0",
+          "doi": "10.1038/s41598-026-46726-0",
+          "url": "https://doi.org/10.1038/s41598-026-46726-0",
+          "title": "Spatiotemporal dynamics and substates underlie emotional signalling in facial movements",
+          "authors": "Cuve, Sowden-Carvalho & Cook",
+          "venue": "Scientific Reports",
+          "year": 2026,
+          "kind": "Journal article",
+          "summary": "When people are asked to show happiness, sadness or anger, alone or while speaking, their facial movements fall into a few patterns over time; short transition phases carry the emotion, and the patterns predict how observers label it.",
+          "topic": "How people read faces",
+          "colour": "#e967a3",
+          "topicFrom": "placement",
+          "near": [
+            {
+              "title": "Spatiotemporal Structure and Substates Underly Emotional Signalling in Facial Expressions and Speech Movements",
+              "author": "Cuve et al.",
+              "year": 2024
+            }
+          ],
+          "fit": "exact",
+          "inLibrary": true,
+          "flag": "relevant",
+          "found": "2026-09-06"
+        },
+        {
+          "id": "10.1016/j.patcog.2025.112910",
+          "anchor": "p-10-1016-j-patcog-2025-112910",
+          "doi": "10.1016/j.patcog.2025.112910",
+          "url": "https://doi.org/10.1016/j.patcog.2025.112910",
+          "title": "Text-guided weakly supervised framework for dynamic facial expression recognition",
+          "authors": "Jung, Kong & Lee",
+          "venue": "Pattern Recognition",
+          "year": 2026,
+          "kind": "Journal article",
+          "summary": "A computer-vision method for labelling facial expressions in video: written descriptions of each emotion help it find the moments that matter when a whole clip carries only one label.",
+          "topic": "Automated facial analysis",
+          "colour": "#67c9e9",
+          "topicFrom": "placement",
+          "near": [
+            {
+              "title": "The Role of Time in Facial Dynamics and Challenges in Automatic Emotion Recognition (2019-2024)",
+              "author": "Contreras-Higuera & Crescenzi-Lanna",
+              "year": 2025
+            }
+          ],
+          "fit": "close",
+          "inLibrary": false,
+          "flag": "relevant",
+          "found": "2026-09-06"
+        },
+        {
+          "id": "10.1080/02699931.2026.2693720",
+          "anchor": "p-10-1080-02699931-2026-2693720",
+          "doi": "10.1080/02699931.2026.2693720",
+          "url": "https://doi.org/10.1080/02699931.2026.2693720",
+          "title": "Motion and intensity shape accuracy and confusion patterns in emotion recognition",
+          "authors": "Favelle, Karakale & Menzies",
+          "venue": "Cognition and Emotion",
+          "year": 2026,
+          "kind": "Journal article",
+          "summary": "Watching an expression unfold on video helps people recognise joy, surprise and anger, especially when it is faint, but still images work better for disgust, fear and sadness, and movement makes fear easier to mistake for surprise.",
+          "topic": "How people read faces",
+          "colour": "#e967a3",
+          "topicFrom": "placement",
+          "near": [
+            {
+              "title": "The Role of Facial Movements in Emotion Recognition",
+              "author": "Krumhuber et al.",
+              "year": 2023
+            }
+          ],
+          "fit": "close",
+          "inLibrary": false,
+          "flag": "relevant",
+          "found": "2026-09-06"
+        }
+      ]
+    }
+  ]
+}

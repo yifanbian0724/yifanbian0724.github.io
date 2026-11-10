@@ -119,10 +119,15 @@ var SITE = {
   })();
 
   /* ---------------------------------------------------------------- face wall (Home)
-     The candid photos behind the name. Every 2.4 s a face in the open part of the wall (beside the words, or below them
-     on a tall screen; on a phone, the band above the name) lights up and shows the AUs LibreFace found in it, two at a
-     time. Pointing at a face there lights it at once; on a phone, tapping a face does. With reduced motion three faces
-     are lit and nothing changes by itself; Pause stops the cycle; it also rests while the wall is off screen. */
+     The candid photos behind the name. The wall drifts slowly to the left and a little upwards, and wraps round out of
+     sight, so every photo passes through the open part of the wall (beside the words, or below them on a tall screen;
+     on a phone, the band above the name). Every 2.4 s a face there lights up and shows the AUs LibreFace found in it, two
+     at a time, never side by side: the face that has waited longest goes first, and a face about to drift under
+     the words waits for its next pass. A few photos always wait out of sight; when a place wraps round, the photo that
+     has waited longest takes it if that place is about to cross the open part, so every photo comes by within a few
+     minutes. Pointing at a face lights it at once and the wall glides to a stop until the pointer leaves; on a
+     phone, tapping a face does. With reduced motion the wall stands still, three faces are lit and nothing changes by
+     itself; Pause stops the drift and the cycle; both rest while the wall is off screen. */
   (function faceWall() {
     var wall = doc.querySelector("[data-facewall]");
     if (!wall) return;
@@ -132,9 +137,10 @@ var SITE = {
     var header = doc.querySelector("[data-header]");
     var btn = hero.querySelector("[data-wall-toggle]"), note = hero.querySelector("[data-wall-still]");
     var label = btn && btn.querySelector("[data-label]");
-    var lit = [], max = 2, timer = null, paused = false, onScreen = true, hover = null, k = 0, tapTimer = null;
+    var lit = [], max = 2, timer = null, paused = false, onScreen = true, hover = null, tapTimer = null;
+    var seen = tiles.map(function () { return 0; });      // when each face was last lit (0: not yet)
     function phone() { return !!(mqPhone && mqPhone.matches); }
-    // the faces wholly inside the open part of the wall
+    // the open part of the wall: right of the words (or below them), under the header, above the notes
     function words() {                                   // where the words end (not the box round them, which is padded)
       var c = null;
       if (copy) $all(":scope > *", copy).forEach(function (el) {
@@ -145,36 +151,171 @@ var SITE = {
       });
       return c;
     }
-    function open() {
-      var vw = root.clientWidth, top = header ? header.getBoundingClientRect().bottom : 64;
-      var c = words(), f = foot ? foot.getBoundingClientRect() : null;
-      var low = phone() ? (eyebrow ? eyebrow.getBoundingClientRect().top - 6 : 236) : (f ? f.top : window.innerHeight) - 10;
-      return tiles.filter(function (t) {
-        var r = t.getBoundingClientRect();
-        if (!r.width || r.top < top + (phone() ? 2 : 6) || r.bottom > low || r.left < 6 || r.right > vw - (phone() ? 6 : 16)) return false;
-        return phone() || !c || r.left > c.right + 24 || r.top > c.bottom + 16;
-      });
+    function bounds() {
+      var f = foot ? foot.getBoundingClientRect() : null;
+      return { vw: root.clientWidth, top: header ? header.getBoundingClientRect().bottom : 64, c: words(),
+        low: phone() ? (eyebrow ? eyebrow.getBoundingClientRect().top - 6 : 236) : (f ? f.top : window.innerHeight) - 10 };
     }
+    // wholly inside the open part; lead: the room it must still have on its left, as it drifts that way
+    function inside(t, b, lead, slack) {
+      if (t.classList.contains("is-queued")) return false;
+      var r = t.getBoundingClientRect(), ph = phone(), c = b.c;
+      lead = lead || 0;
+      if (slack) {                                       // a lit face is drawn a little larger: judge it by its middle
+        var dx = r.width * slack, dy = r.height * slack;
+        r = { left: r.left + dx, right: r.right - dx, top: r.top + dy, bottom: r.bottom - dy, width: r.width - 2 * dx };
+      }
+      if (!r.width || r.top < b.top + (ph ? 2 : 6) || r.bottom > b.low || r.left < 6 + lead || r.right > b.vw - (ph ? 6 : 16)) return false;
+      return ph || !c || r.left > c.right + 24 + lead || r.top > c.bottom + 16;
+    }
+    function open(lead) { var b = bounds(); return tiles.filter(function (t) { return inside(t, b, lead); }); }
     function light(t) {
       if (lit.indexOf(t) >= 0) return;
-      t.classList.add("is-lit"); lit.push(t);
+      t.classList.add("is-lit"); lit.push(t); seen[tiles.indexOf(t)] = now();
       while (lit.length > max) lit.shift().classList.remove("is-lit");
     }
+    function unlight(t) { var i = lit.indexOf(t); if (i >= 0) { lit.splice(i, 1); t.classList.remove("is-lit"); } }
     function clear() { lit.forEach(function (t) { t.classList.remove("is-lit"); }); lit = []; }
-    function step() { if (hover) return; var c = open(); if (c.length) light(c[(k = (k + 5) % c.length)]); }
+    function step() {
+      if (hover) return;
+      var c = open(drift.on ? drift.p * 0.35 : 0).filter(function (t) { return lit.indexOf(t) < 0; });
+      if (!c.length) return;
+      // two lit faces are never side by side: a face right beside the one staying lit waits until it drifts clear
+      var centre = function (t) { var r = t.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, r.width]; };
+      var near = function (m, o) { return Math.hypot(m[0] - o[0], m[1] - o[1]) < 1.2 * Math.max(m[2], o[2]); };
+      var stay = lit.slice(lit.length >= max ? 1 : 0).map(centre);   // the oldest goes out when this one comes in
+      var t0 = now();
+      var rank = c.map(function (t) {
+        var m = centre(t), s = seen[tiles.indexOf(t)];
+        return { t: t, m: m, s: s, due: !s || t0 - s > 60000 ? 0 : 1, far: stay.every(function (o) { return !near(m, o); }) };
+      });
+      rank.sort(function (a, b) {                        // apart first, then due, then the longest wait, then most room ahead
+        return (b.far - a.far) || a.due - b.due || a.s - b.s || b.m[0] - a.m[0];
+      });
+      var pick = rank[0];
+      if (!pick.far) {                                   // nothing clear of the lit face yet: wait for the next beat,
+        if (lit.length && t0 - seen[tiles.indexOf(lit[0])] > 7000) unlight(lit[0]);   // and let a long-lit face go
+        return;
+      }
+      light(pick.t);
+    }
     function still() {                                   // reduced motion: a few faces lit, spread over the open wall
       clear();
       var c = open(), qs = phone() ? [0.2, 0.8] : [0.1, 0.5, 0.9];
       max = qs.length;
       qs.forEach(function (q) { var t = c[Math.round(q * (c.length - 1))]; if (t) light(t); });
     }
+
+    // the drift: the photos sit in a grid of places that wraps round (a torus), one place larger than the wall each way,
+    // so a photo always wraps while it is out of sight. Speeds are in photos per second: on a wide screen the wall moves
+    // left and a little up; on a phone it moves sideways only, so a row always sits in the band above the name.
+    var drift = { on: false, p: 0, C: 0, R: 0, vx: 0, vy: 0, slots: [], queue: [], ox: 0, oy: 0, v: 1, last: 0, raf: 0, check: 0, zone: null };
+    var canDrift = !!(window.CSS && CSS.supports && CSS.supports("translate", "1px 1px")) && "requestAnimationFrame" in window;
+    function mod(a, n) { return ((a % n) + n) % n; }
+    function tearDown() {
+      if (drift.raf) cancelAnimationFrame(drift.raf);
+      drift.raf = 0; drift.on = false;
+      wall.classList.remove("is-drift"); wall.style.height = "";
+      tiles.forEach(function (t) { t.style.width = t.style.height = t.style.translate = ""; t.classList.remove("is-queued"); });
+    }
+    function setUp() {
+      tearDown();
+      if (reduced() || !canDrift) return;
+      var cs = getComputedStyle(wall);                   // measured as the still grid
+      var cols = (cs.gridTemplateColumns || "").split(" ").filter(Boolean).length || 7;
+      var gap = parseFloat(cs.columnGap) || 8, W = wall.offsetWidth, H = wall.offsetHeight, N = tiles.length;
+      if (!W || !H || !N) return;
+      var ph = phone(), extra = ph ? 0 : 1;              // a phone's rows never wrap, so they need no spare row
+      var keep = Math.max(6, Math.round(N * 0.15));      // photos that always wait out of sight, ready to come in
+      if (ph) cols += 1;                                 // a phone: smaller photos, so two rows fit the band above the name
+      var p = (W + gap) / cols;                          // the photos keep their size, or grow a little to go round
+      while ((Math.ceil(W / p) + 1) * (Math.ceil(H / p) + extra) > N - keep) p += 2;
+      drift.p = p; drift.C = Math.ceil(W / p) + 1; drift.R = Math.ceil(H / p) + extra;
+      drift.vx = ph ? 0.12 : 0.075; drift.vy = ph ? 0 : 0.02;   // about 15 px a second on a laptop, 9 on a phone
+      max = 2;
+      zone();
+      drift.slots = []; drift.queue = []; drift.on = true;
+      wall.style.height = H + "px";
+      wall.classList.add("is-drift");
+      var size = (p - gap).toFixed(2) + "px";
+      tiles.forEach(function (t, i) {
+        t.style.width = size; t.style.height = size;
+        if (i < drift.C * drift.R) drift.slots.push({ c: i % drift.C, r: Math.floor(i / drift.C), face: t, x: null, y: null });
+        else { t.classList.add("is-queued"); drift.queue.push(t); }
+      });
+      place();
+    }
+    function zone() {
+      var b = bounds(), r = wall.getBoundingClientRect();
+      var left = (b.c && !phone() ? b.c.right + 24 : 6) - r.left, right = b.vw - (phone() ? 6 : 16) - r.left;
+      drift.zone = { left: left, right: right, top: b.top + 6 - r.top, bottom: b.low - r.top };
+    }
+    function place() {
+      var p = drift.p, CW = drift.C * p, RH = drift.R * p;
+      drift.slots.forEach(function (s) {
+        var x = mod(s.c * p - drift.ox, CW) - p, y = mod(s.r * p - drift.oy, RH) - (drift.vy ? p : 0);
+        var wrapX = s.x !== null && x > s.x + p / 2, wrapY = s.y !== null && y > s.y + p / 2;
+        if ((wrapX || wrapY) && drift.queue.length) {    // it wrapped round, out of sight: a waiting photo takes its place
+          var out = s.face, z = drift.zone;
+          unlight(out); if (hover === out) point(null);
+          out.classList.add("is-queued"); out.style.translate = "";
+          // will this place cross the open part soon? Then the photo that has waited longest; if not, a recent one
+          var soon = !!z && (wrapX ? (y > z.top && y + p < z.bottom) : (x > z.left && x + p < z.right));
+          var best = 0;
+          drift.queue.forEach(function (f, i) {
+            var a = seen[tiles.indexOf(f)], b = seen[tiles.indexOf(drift.queue[best])];
+            if (soon ? a < b : a > b) best = i;
+          });
+          s.face = drift.queue.splice(best, 1)[0]; drift.queue.push(out); s.face.classList.remove("is-queued");
+        }
+        s.x = x; s.y = y;
+        s.face.style.translate = x.toFixed(1) + "px " + y.toFixed(1) + "px";
+      });
+    }
+    // just before a place slides in from the right, still out of sight, the photo that has waited longest takes it
+    function stage(b) {
+      drift.slots.forEach(function (s) {
+        var f = s.face, r = f.getBoundingClientRect();
+        if (!(r.left > b.vw + 2 && r.left < b.vw + drift.p * 1.2 && r.top >= b.top && r.bottom <= b.low)) { s.staged = false; return; }
+        if (s.staged || !drift.queue.length) return;
+        s.staged = true;
+        var best = 0;
+        drift.queue.forEach(function (q, i) { if (seen[tiles.indexOf(q)] < seen[tiles.indexOf(drift.queue[best])]) best = i; });
+        var q = drift.queue[best];
+        if (seen[tiles.indexOf(q)] >= seen[tiles.indexOf(f)]) return;   // the photo here has waited as long already
+        unlight(f); f.classList.add("is-queued"); f.style.translate = "";
+        drift.queue.splice(best, 1); drift.queue.push(f);
+        q.classList.remove("is-queued"); s.face = q;
+        q.style.translate = s.x.toFixed(1) + "px " + s.y.toFixed(1) + "px";
+      });
+    }
+    function frame(t) {
+      drift.raf = 0;
+      if (!drift.on || paused || !onScreen || doc.hidden) return;
+      var dt = drift.last ? Math.min(0.05, (t - drift.last) / 1000) : 0;
+      drift.last = t;
+      drift.v += ((hover ? 0 : 1) - drift.v) * Math.min(1, dt * 2.5);   // glide to a stop under the pointer, and back
+      drift.ox = mod(drift.ox + drift.vx * drift.p * drift.v * dt, drift.C * drift.p);
+      drift.oy = mod(drift.oy + drift.vy * drift.p * drift.v * dt, drift.R * drift.p);
+      place();
+      if (t - drift.check > 500) {                       // a lit face that drifts out of the open part goes back
+        drift.check = t;
+        var b = bounds();
+        lit.slice().forEach(function (f) { if (f !== hover && !inside(f, b, 0, 0.15)) unlight(f); });
+        stage(b);
+      }
+      drift.raf = requestAnimationFrame(frame);
+    }
+
     function run() {
       if (timer) { clearInterval(timer); timer = null; }
+      if (drift.raf) { cancelAnimationFrame(drift.raf); drift.raf = 0; }
       if (reduced()) { still(); return; }
       max = 2;
       if (paused || !onScreen || doc.hidden) return;
-      if (!lit.length) { var c = open(); if (c.length) light(c[Math.min(2, c.length - 1)]); }
+      if (!lit.length) step();
       timer = setInterval(step, 2400);
+      if (drift.on) { drift.last = 0; drift.raf = requestAnimationFrame(frame); }
     }
     function paint() {
       if (note) note.hidden = !reduced();
@@ -205,10 +346,20 @@ var SITE = {
       new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; run(); }).observe(hero);
     }
     doc.addEventListener("visibilitychange", run);
-    var rz = null;
-    window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (reduced()) still(); }, 200); });
-    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { if (reduced()) still(); });
-    onChange(mqReduce, function () { paint(); clear(); run(); });
+    var rz = null, lastW = root.clientWidth, lastH = window.innerHeight;
+    window.addEventListener("resize", function () {
+      clearTimeout(rz);
+      rz = setTimeout(function () {
+        if (reduced()) { still(); return; }
+        // a phone's address bar showing or hiding changes the height a little: keep the drift going through that
+        if (root.clientWidth === lastW && Math.abs(window.innerHeight - lastH) < 120) return;
+        lastW = root.clientWidth; lastH = window.innerHeight;
+        clear(); setUp(); run();
+      }, 200);
+    });
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { if (reduced()) still(); else if (drift.on) zone(); });
+    onChange(mqReduce, function () { paint(); clear(); setUp(); run(); });
+    setUp();
     paint();
     run();
   })();
